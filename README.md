@@ -1,0 +1,1 @@
+This project is a portfolio website for Kelilah Wolkowicz. She will have 5 webpages talking about herself, her courses, projects, publications and team. We plan to implement the ability for users to create accounts and sign in where they can then leave comments on the publications. These publications will be pulled automatically from Google Scholar using an API.
