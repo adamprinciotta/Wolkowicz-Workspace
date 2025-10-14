@@ -1,3 +1,7 @@
+body{
+    background-color: rgb(255, 233, 186);
+}
+
 .nav{
     display: flex;
     justify-content: space-evenly;
@@ -12,4 +16,41 @@
 
 .nav a:hover{
     color: blue;
+}
+
+.homeIntro{
+    font-size: 30px;
+}
+
+.homeIntro h1{
+    justify-content: left;
+}
+
+.homeBio{
+    font-size: 20px;
+    justify-content: left;
+}
+
+.homeEducation{
+    font-size: 20px;
+    justify-content: left;
+}
+
+
+
+
+.team-secction{
+    width: 80vw;
+}
+
+.team-member-row{
+    /* border-top: solid 1px; */
+    /* margin: 1.5rem 0 0; */
+    display: flex;
+}
+
+.member-header{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
 }
