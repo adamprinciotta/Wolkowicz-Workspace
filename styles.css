@@ -1,3 +1,7 @@
+body{
+    background-color: rgb(255, 233, 186);
+}
+
 .nav{
     display: flex;
     justify-content: space-evenly;
@@ -11,7 +15,7 @@
 }
 
 .nav a:hover{
-    color: rgba(75, 75, 75, 0.578);
+    color: blue;
 }
 
 .homeIntro{
@@ -24,12 +28,12 @@
 }
 
 .homeBio{
-    font-size: 12px;
+    font-size: 20px;
     justify-content: left;
 }
 
 .homeEducation{
-    font-size: 12px;
+    font-size: 20px;
     justify-content: left;
 }
 
