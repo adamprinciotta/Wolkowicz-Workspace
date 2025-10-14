@@ -116,6 +116,13 @@ body{
     text-decoration: underline;
 }
 
+.courses-subheader {
+    font-size: 18px;
+    font-weight: normal;
+    color: black;
+    margin: -10px 0 30px 0;
+}
+
 .courseDetails {
     margin: 40px 0;
 }
@@ -123,12 +130,12 @@ body{
 .courseItem {
     margin: 30px 0;
     padding: 25px;
-    border: 1px solid #ddd;
+    border: 1px solid gray;
     border-radius: 5px;
 }
 
 .courseItem h3 {
-    color: #333;
+    color: black;
     margin: 0 0 8px 0;
     font-size: 20px;
     font-weight: bold;
@@ -137,13 +144,13 @@ body{
 .courseItem h4 {
     margin: 0 0 15px 0;
     font-size: 26px;
-    color: #000;
+    color: black;
     font-weight: 600;
 }
 
 .courseItem p {
     line-height: 1.8;
-    color: #444;
+    color: black;
     font-size: 16px;
     margin: 0;
 }
