@@ -48,8 +48,6 @@
     align-items: center;
 }
 
-
-
 .team-section{
     width: 95vw;
     justify-content: center;
@@ -97,8 +95,6 @@
     object-fit: cover;
 }
 
-
-
 .alumni-header{
     display: flex;
     justify-content: center;
@@ -107,8 +103,12 @@
 .alumni-section{
     display: flex;
     justify-content: space-between;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
 }
 
 .alumni-section th{
     text-decoration: underline;
 }
+
