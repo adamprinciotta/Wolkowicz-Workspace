@@ -1,5 +1,6 @@
 body{
     background-color: rgb(255, 233, 186);
+    font-family:Georgia, 'Times New Roman', Times, serif;
 }
 
 .nav{
@@ -18,9 +19,20 @@ body{
     color: blue;
 }
 
+.homeBanner{
+    text-align: center;
+}
+
+.homeBanner h1{
+    font-size: 50px;
+}
+
+.homeWelcome{
+    text-align: center;
+}
+
 .homeIntro{
-    font-size: 30px;
-    /* font; */
+    font-size: 25px;
 }
 
 .homeIntro h1{
