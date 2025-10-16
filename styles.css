@@ -1,9 +1,14 @@
 body{
     background-color: rgb(255, 233, 186);
     font-family:Georgia, 'Times New Roman', Times, serif;
+    width: 75vw;
+    margin: auto;
 }
 
 .nav{
+    width: 100vw;
+    padding-top: 10px;
+    margin: 0 -12.5vw 0 -12.5vw;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
@@ -16,7 +21,7 @@ body{
 }
 
 .nav a:hover{
-    color: blue;
+    color: gray;
 }
 
 .homeBanner{
@@ -51,10 +56,10 @@ body{
 
 
 .team-intro{
-    padding-left: 2.5vw;
+    /* padding-left: 2.5vw; */
     display: flex;
     flex-direction: column;
-    align-items: center;
+    /* align-items: center; */
 }
 
 .all-members{
@@ -65,7 +70,8 @@ body{
 }
 
 .team-section{
-    width: 95vw;
+    /* width: 95vw; */
+    width: 100%;
     justify-content: center;
     align-items: center;
 }
@@ -113,20 +119,32 @@ body{
 }
 
 .alumni-header{
+    /* margin: 50px 0 20px 0; */
+    /* border-top: dotted 1px; */
     display: flex;
     justify-content: center;
+    font-size: 22px;
 }
 
 .alumni-section{
     display: flex;
-    justify-content: space-between;
+    /* justify-content: space-between; */
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: space-evenly;
 }
 
 .alumni-section th{
     text-decoration: underline;
+}
+
+.alumni-section tr{
+    text-align: center;
+}
+
+.alumni-section td{
+    width: 33%;
+    padding: 10px 100px;
 }
 
 .courses-subheader {
