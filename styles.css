@@ -7,16 +7,33 @@ body{
     display: flex;
     justify-content: space-evenly;
     align-items: center;
+    padding: 1rem 2rem;
+    background: rgb(255, 233, 186);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    position: sticky;
+    top: 0;
 }
 
 .nav a{
     text-decoration: none;
     color: black;
     font-size: 20px;
+    font-weight: 500;
+    transition: color 0.2s ease;
 }
 
 .nav a:hover{
     color: blue;
+}
+
+.title{
+    justify-content: left;
+}
+
+.homePicture img{
+  width: 350px;
+  height: auto;
+  border-radius: 8px;
 }
 
 .homeBanner{
@@ -33,6 +50,9 @@ body{
 
 .homeIntro{
     font-size: 25px;
+    display: flex;
+    align-items: center; /* vertically centers text next to image */
+    gap: 10px;           /* space between image and text */
 }
 
 .homeIntro h1{
