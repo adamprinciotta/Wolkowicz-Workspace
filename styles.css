@@ -6,9 +6,9 @@ body{
 }
 
 .nav{
-    width: 100vw;
+    width: 100%;
     padding-top: 10px;
-    margin: 0 -12.5vw 0 -12.5vw;
+    /* margin: 0 -12.5vw 0 -12.5vw; */
     display: flex;
     justify-content: space-evenly;
     align-items: center;
@@ -57,7 +57,7 @@ body{
     font-size: 25px;
     display: flex;
     align-items: center; /* vertically centers text next to image */
-    gap: 10px;           /* space between image and text */
+    gap: 50px;           /* space between image and text */
 }
 
 .homeIntro h1{
