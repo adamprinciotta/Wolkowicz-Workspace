@@ -1,6 +1,6 @@
 body{
-    background-color: rgb(255, 233, 186);
-    font-family:Georgia, 'Times New Roman', Times, serif;
+    background-color: rgb(255, 255, 255);
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     width: 75vw;
     margin: auto;
 }
@@ -13,10 +13,11 @@ body{
     justify-content: space-evenly;
     align-items: center;
     padding: 1rem 2rem;
-    background: rgb(255, 233, 186);
+    background: rgb(255, 255, 255);
     box-shadow: 0 2px 10px rgba(0,0,0,0.05);
     position: sticky;
     top: 0;
+    z-index: 1000;
 }
 
 .nav a{
@@ -43,10 +44,27 @@ body{
 
 .homeBanner{
     text-align: center;
+    background-image: url(images/skyline.webp);
+    background-size: cover;
+    background-position: center;
+    height: 20vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    position: relative;
+    border: 100px;
+    border-color: black;
 }
 
 .homeBanner h1{
     font-size: 50px;
+    font-weight: bold;
+    text-shadow:
+    -2px -2px 0 black,
+     2px -2px 0 black,
+    -2px  2px 0 black,
+     2px  2px 0 black;
 }
 
 .homeWelcome{
@@ -74,6 +92,33 @@ body{
     justify-content: left;
 }
 
+.gallery {
+  display: flex;
+  justify-content: center; /* centers the row */
+  gap: 120px; /* space between images */
+  margin: 60px auto;
+  text-align: center;
+}
+
+.gallery .item {
+  width: 150px; /* set a consistent size */
+}
+
+.gallery img {
+  width: 100%;
+  border-radius: 12px; /* rounded corners */
+  transition: transform 0.3s ease; /* hover effect */
+}
+
+.gallery img:hover {
+  transform: scale(1.05); /* zoom slightly on hover */
+}
+
+.gallery p {
+  margin-top: 10px;
+  font-size: 1rem;
+  color: #333;
+}
 
 .team-intro{
     /* padding-left: 2.5vw; */
