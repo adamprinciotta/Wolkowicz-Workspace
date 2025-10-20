@@ -256,3 +256,31 @@ body{
     border: none;
     border-top: 1px solid #ccc;
 }
+
+.pub-details{
+    font-size: 18px;
+    font-weight: bold;
+    color: black;
+    text-decoration: none;
+}
+
+.pub-details:hover{
+    color: gray;
+    cursor: pointer;
+}
+
+
+/* research will have 3 divs within each being researchItem, I want to make it so all the information including the image is on the same line and have the order be title, text, image */
+/* the image needs to be smaller to accomadate the size */
+.researchItem{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 40px;
+}
+.researchItem img{
+    width: 300px;
+    height: auto;
+    border-radius: 8px;
+    object-fit: cover;
+}
