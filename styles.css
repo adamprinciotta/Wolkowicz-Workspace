@@ -269,9 +269,6 @@ body{
     cursor: pointer;
 }
 
-
-/* research will have 3 divs within each being researchItem, I want to make it so all the information including the image is on the same line and have the order be title, text, image */
-/* the image needs to be smaller to accomadate the size */
 .researchItem{
     display: flex;
     align-items: center;
