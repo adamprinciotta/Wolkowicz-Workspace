@@ -1,156 +1,186 @@
-
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Research Team - Dr. Wolkowicz Lab</title>
-        <meta name="description" content="Meet the research team at Dr. Wolkowicz's lab">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="./styles.css">
-    </head>
-    <body>
-        <section class="nav">
-            <a href="home.html">Home</a> |
-            <a href="team.html">Team</a> |
-            <a href="courses.html">Courses</a> |
-            <a href="projects.html">Research</a> |
-            <a href="publications.html">Publications</a>
-        </section>
-        
-        <div class="team-intro">
-            <h1>Research Team</h1>
-            <h2>Current Lab Members</h2>
-        </div>
-        
-        <section class="all-members">
-            <section class="team-section">
-                <hr>
-                <div class="team-member-row">
-                    <div class="member-photo">
-                        <img src="images/home.webp" alt="Student 1 photo">
-                    </div>
-                    <div class="member-info">
-                        <div class="member-header">
-                            <h2>Kelilah Wolkowicz</h2>
-                            <p class="member-title"><em>Assistant Professor of Mechanical and Industrial Engineering at UMass Lowell</em></p>
-                        </div>
-                        <p class="member-bio">
-                            Kelilah studies problems in healthcare that could be solved by applying design, control theory, and robotics. Her research focuses on developing methods and mechanisms to further enhance or promote user independence, while addressing users’ needs to remain, as much as possible, integrated socially and productively as members of their communities. Kelilah is an engineering faculty advocate for the River Hawks Scholar Academy, an engineering faculty fellow for DifferenceMaker, and a faculty advisor for the Society of Women Engineers UML chapter.
-                        </p>
-                        <p class="research-keywords">
-                            <strong>Research Focus:</strong> [Keywords]
-                        </p>
-                    </div>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Research Team - Dr. Wolkowicz Lab</title>
+    <meta
+      name="description"
+      content="Meet the research team at Dr. Wolkowicz's lab"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+
+  <body>
+    <!-- Navigation -->
+    <section class="nav">
+      <a href="home.html">Home</a> |
+      <a href="team.html">Team</a> |
+      <a href="courses.html">Courses</a> |
+      <a href="projects.html">Research</a> |
+      <a href="publications.html">Publications</a>
+    </section>
+
+    <div class="team-intro">
+      <h1>Research Team</h1>
+      <h2>Current Lab Members</h2>
+    </div>
+
+    <!-- React mounts here -->
+    <section class="all-members">
+      <div id="team-root"></div>
+    </section>
+
+    <section class="alumni-header">
+      <h2>Lab Alumni</h2>
+    </section>
+
+    <!-- React mounts here -->
+    <section class="alumni-section">
+      <div id="alumni-root"></div>
+    </section>
+
+    <hr />
+
+    <!-- React and Babel -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <!-- React Components -->
+    <script type="text/babel">
+      // Team Member component
+      function TeamMember({ name, title, bio, focus, photo }) {
+        return (
+          <section className="team-section">
+            <hr />
+            <div className="team-member-row">
+              <div className="member-photo">
+                <img src={photo} alt={`${name} photo`} />
+              </div>
+              <div className="member-info">
+                <div className="member-header">
+                  <h2>{name}</h2>
+                  <p className="member-title">
+                    <em>{title}</em>
+                  </p>
                 </div>
-                
-                <hr>
-            </section>
+                <p className="member-bio">{bio}</p>
+                <p className="research-keywords">
+                  <strong>Research Focus:</strong> {focus}
+                </p>
+              </div>
+            </div>
+          </section>
+        );
+      }
 
+      // Alumni Row component
+      function AlumniRow({ name, degree, current }) {
+        return (
+          <tr>
+            <td>{name}</td>
+            <td>{degree}</td>
+            <td>{current}</td>
+          </tr>
+        );
+      }
 
-            <section class="team-section">
-                <div class="team-member-row">
-                    <div class="member-photo">
-                        <img src="" alt="Student 2 photo">
-                    </div>
-                    <div class="member-info">
-                        <div class="member-header">
-                            <h2>Elyas Irankhah</h2>
-                            <p class="member-title"><em>PhD Candidate</em></p>
-                        </div>
-                        <p class="member-bio">
-                            Description for student
-                        </p>
-                        <p class="research-keywords">
-                            <strong>Research Focus:</strong> [Keywords]
-                        </p>
-                    </div>
-                </div>
+      // Alumni Table component
+      function AlumniTable({ alumni }) {
+        return (
+          <table className="alumni-table">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Former Position</th>
+                <th>Current Position</th>
+              </tr>
+            </thead>
+            <tbody>
+              {alumni.map((a, index) => (
+                <AlumniRow key={index} {...a} />
+              ))}
+            </tbody>
+          </table>
+        );
+      }
 
-                <hr>
-            </section>
-            
-            <section class="team-section">
-                <div class="team-member-row">
-                    <div class="member-photo">
-                        <img src="" alt="Student 3 photo">
-                    </div>
-                    <div class="member-info">
-                        <div class="member-header">
-                            <h2>Masoumeh Farhadi Nia</h2>
-                            <p class="member-title"><em>PhD Candidate</em></p>
-                        </div>
-                        <p class="member-bio">
-                            Masoumeh Farhadi Nia is a PhD student in Electrical and Computer Engineering at University of Massachusetts Lowell, where she is a member of CARE, Collaborative Assistive and Rehabilitative Robotics Engineering, and CACT, Center for Advanced Computation and Telecommunications, labs. Her research focuses on Signal Processing and AI, with a particular emphasis on EEG- based Brain-Computer- Interface (BCI) signal analysis for electric wheelchair navigation. 
-                        </p>
-                        <p class="research-keywords">
-                            <strong>Research Focus:</strong> Signal Processing and AI
-                        </p>
-                    </div>
-                </div>
+      // Team data
+      const teamMembers = [
+        {
+          name: "Kelilah Wolkowicz",
+          title:
+            "Assistant Professor, Mechanical and Industrial Engineering",
+          bio: "Kelilah studies problems in healthcare that could be solved by applying design, control theory, and robotics. Her research focuses on developing methods and mechanisms to further enhance or promote user independence, while addressing users’ needs to remain, as much as possible, integrated socially and productively as members of their communities. Kelilah is an engineering faculty advocate for the River Hawks Scholar Academy, an engineering faculty fellow for DifferenceMaker, and a faculty advisor for the Society of Women Engineers UML chapter.",
+          focus: "[Keywords]",
+          photo: "images/home.webp",
+        },
+        {
+          name: "Elyas Irankhah",
+          title: "PhD Candidate",
+          bio: "Description for student",
+          focus: "[Keywords]",
+          photo: "",
+        },
+        {
+          name: "Masoumeh Farhadi Nia",
+          title: "PhD Candidate",
+          bio: "Masoumeh Farhadi Nia is a PhD student in Electrical and Computer Engineering at University of Massachusetts Lowell, where she is a member of CARE, Collaborative Assistive and Rehabilitative Robotics Engineering, and CACT, Center for Advanced Computation and Telecommunications, labs. Her research focuses on Signal Processing and AI, with a particular emphasis on EEG-based Brain-Computer Interface (BCI) signal analysis for electric wheelchair navigation.",
+          focus: "Signal Processing and AI",
+          photo: "",
+        },
+        {
+          name: "Student Name 4",
+          title: "Title",
+          bio: "Description for student",
+          focus: "[Keywords]",
+          photo: "",
+        },
+      ];
 
-                <hr>
-            </section>
+      // Alumni data
+      const alumni = [
+        {
+          name: "Alumni 1",
+          degree: "Degree [Year]",
+          current: "Current Position",
+        },
+        {
+          name: "Alumni 2",
+          degree: "Degree [Year]",
+          current: "Current Position",
+        },
+        {
+          name: "Alumni 3",
+          degree: "Degree [Year]",
+          current: "Current Position",
+        },
+      ];
 
-            <section class="team-section">
-                <div class="team-member-row">
-                    <div class="member-photo">
-                        <img src="" alt="Student 4 photo">
-                    </div>
-                    <div class="member-info">
-                        <div class="member-header">
-                            <h2>Student Name 4</h2>
-                            <p class="member-title"><em>Title</em></p>
-                        </div>
-                        <p class="member-bio">
-                            Description for student
-                        </p>
-                        <p class="research-keywords">
-                            <strong>Research Focus:</strong> [Keywords]
-                        </p>
-                    </div>
-                </div>
-                
-                <hr>
-            </section>
-        </section>
+      // Section wrapper for team members
+      function TeamSection() {
+        return (
+          <>
+            {teamMembers.map((member, i) => (
+              <TeamMember key={i} {...member} />
+            ))}
+          </>
+        );
+      }
 
+      // Section wrapper for alumni
+      function AlumniSection() {
+        return <AlumniTable alumni={alumni} />;
+      }
 
-        
-        <section class="alumni-header">
-            <h2>Lab Alumni</h2>
-        </section>
-        
-        <section class="alumni-section">
-            <table class="alumni-table">
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Former Position</th>
-                        <th>Current Position</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Alumni 1</td>
-                        <td>Degree [Year]</td>
-                        <td>Current Position</td>
-                    </tr>
-                    <tr>
-                        <td>Alumni 2</td>
-                        <td>Degree [Year]</td>
-                        <td>Current Position</td>
-                    </tr>
-                    <tr>
-                        <td>Alumni 3</td>
-                        <td>Degree [Year]</td>
-                        <td>Current Position</td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
+      // Mount React components
+      const teamRoot = ReactDOM.createRoot(document.getElementById("team-root"));
+      teamRoot.render(<TeamSection />);
 
-        <hr>
-
-    </body>
+      const alumniRoot = ReactDOM.createRoot(document.getElementById("alumni-root"));
+      alumniRoot.render(<AlumniSection />);
+    </script>
+  </body>
 </html>
