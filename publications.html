@@ -1,98 +1,128 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Publications - Dr. Wolkowicz Lab</title>
-        <meta name="description" content="Publications from Dr. Wolkowicz's research lab">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="./styles.css">
-    </head>
-    <body>
-        <section class="nav">
-            <a href="home.html">Home</a> |
-            <a href="team.html">Team</a> |
-            <a href="courses.html">Courses</a> |
-            <a href="projects.html">Research</a> |
-            <a href="publications.html">Publications</a>
-        </section>
-        
-        <h1>Publications</h1>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Publications - Dr. Wolkowicz Lab</title>
+    <meta name="description" content="Publications from Dr. Wolkowicz's research lab" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="./styles.css" />
 
+    <!-- React + Babel (no build needed) -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
 
-        <h2>2021</h2>
-        <section class="pub-container">
-            <div class="pub-item">
-                <h3></h3>
-                <a class="pub-details" href="https://doi.org/10.1016/j.cobme.2021.100312" target="_blank" class="authors">Eleonora M Aiello, Sunil Deshpande, Başak Özaslan, Kelilah L Wolkowicz, Eyal Dassau, Jordan E Pinsker, Francis J Doyle III, Review of automated insulin delivery systems for individuals with type 1 diabetes: tailored solutions for subpopulations, Current opinion in biomedical engineering</a>
-                <div class="comments-section">
-                    <h4>Comments</h4>
-                    <div class="comments-list">
-                        <div class="comment">
-                            <p class="comment-author"><strong>Steven</strong></p>
-                            <p class="comment-text">This is a awesome research paper. Great work!</p>
-                            <p class="comment-date"><em>October 5, 2025</em></p>
-                        </div>
-                    </div>
-                </div>
+  <body>
+    <section class="nav">
+      <a href="home.html">Home</a> |
+      <a href="team.html">Team</a> |
+      <a href="courses.html">Courses</a> |
+      <a href="projects.html">Research</a> |
+      <a href="publications.html">Publications</a>
+    </section>
+
+    <h1>Publications</h1>
+    <div id="root"></div>
+
+    <script type="text/babel">
+      // One publication card
+      function Publication({ id, title, authors, details, doi, doi_link }) {
+        const [comments, setComments] = React.useState([]);
+        const [loading, setLoading] = React.useState(true);
+
+        // Fetch comments from your database API
+        React.useEffect(() => {
+          fetch(`/api/comments?paperId=${id}`)
+            .then((res) => res.json())
+            .then((data) => {
+              setComments(data);
+              setLoading(false);
+            })
+            .catch((err) => {
+              console.error("Error loading comments:", err);
+              setLoading(false);
+            });
+        }, [id]);
+
+        return (
+          <section className="pub-container">
+            <div className="pub-item">
+              <h3>{title}</h3>
+              <p className="authors">{authors}</p>
+              {doi_link && (
+                <p>
+                  &gt;&gt;{" "}
+                  <a href={doi_link} target="_blank" rel="noopener noreferrer">
+                    DOI {doi}
+                  </a>
+                </p>
+              )}
+              <p className="pub-details">{details}</p>
+
+              <div className="comments-section">
+                <h4>Comments</h4>
+                {loading ? (
+                  <p>Loading comments...</p>
+                ) : comments.length > 0 ? (
+                  <div className="comments-list">
+                    {comments.map((comment, i) => (
+                      <div className="comment" key={i}>
+                        <p className="comment-author">
+                          <strong>{comment.author}</strong>
+                        </p>
+                        <p className="comment-text">{comment.text}</p>
+                        <p className="comment-date">
+                          <em>{comment.date}</em>
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <p className="no-comments">No comments yet.</p>
+                )}
+              </div>
             </div>
-        </section>
-        <hr>
+          </section>
+        );
+      }
 
-        <h2>2020</h2>
-        <section class="pub-container">
-            <div class="pub-item">
-                <a class="pub-details">K. Wolkowicz, F. J. Doyle, III, E. Dassau, Control of Drug Delivery for Type 1 Diabetes Mellitus, Encyclopedia of Systems and Control</a>
-                <div class="comments-section">
-                    <h4>Comments</h4>
-                    <div class="comments-list">
-                        <div class="comment">
-                            <p class="comment-author"><strong>Modib</strong></p>
-                            <p class="comment-text">This is a awesome research paper. Great work!</p>
-                            <p class="comment-date"><em>October 5, 2025</em></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+      // Full list
+      function PublicationsList() {
+        const [publications, setPublications] = React.useState([]);
+        const [loading, setLoading] = React.useState(true);
 
-        <hr>
+        React.useEffect(() => {
+          fetch("publications.json")
+            .then((res) => res.json())
+            .then((data) => {
+              const sorted = data.sort((a, b) => (b.year || 0) - (a.year || 0));
+              setPublications(sorted);
+              setLoading(false);
+            })
+            .catch((err) => {
+              console.error("Error loading publications:", err);
+              setLoading(false);
+            });
+        }, []);
 
-        <section class="pub-container">
-            <div class="pub-item">
-                <a class="pub-details" href="https://doi.org/10.1002/btm2.10201" target="_blank">KL Wolkowicz, EM Aiello, E Vargas, H Teymourian, F Tehrani, J Wang, A review of biomarkers in the context of type 1 diabetes: biological sensing for enhanced glucose controlBioengineering & Translational Medicine</a>
-                <div class="comments-section">
-                    <h4>Comments</h4>
-                    <div class="comments-list">
-                        <div class="comment">
-                            <p class="comment-author"><strong>Adam</strong></p>
-                            <p class="comment-text">This is a awesome research paper. Great work!</p>
-                            <p class="comment-date"><em>October 5, 2025</em></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <hr>
+        if (loading) return <p>Loading publications...</p>;
 
-        <section class="pub-container">
-            <div class="pub-item">
-                <h3></h3>
-                <a class="pub-details" href="https://doi.org/10.1115/MSEC2014-4049" target="_blank">Andrew C Barnett, Kelilah Wolkowicz, Jason Z Moore, Vibrating needle cutting force, International Manufacturing Science and Engineering Conference</a>
-                <div class="comments-section">
-                    <h4>Comments</h4>
-                    <div class="comments-list">
-                        <div class="comment">
-                            <p class="comment-author"><strong>Sohail</strong></p>
-                            <p class="comment-text">This is a awesome research paper. Great work!</p>
-                            <p class="comment-date"><em>October 5, 2025</em></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+        return (
+          <div>
+            {publications.map((pub, i) => (
+              <React.Fragment key={i}>
+                <Publication {...pub} />
+                <hr />
+              </React.Fragment>
+            ))}
+          </div>
+        );
+      }
 
-        <hr>
-    </body>
+      const root = ReactDOM.createRoot(document.getElementById("root"));
+      root.render(<PublicationsList />);
+    </script>
+  </body>
 </html>
