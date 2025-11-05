@@ -286,3 +286,43 @@ body{
     border-radius: 8px;
     object-fit: cover;
 }
+
+
+/* .display-name,
+.c-body,
+.c-button {
+  box-sizing: border-box;
+  font-size: 16px;
+} */
+
+.cform{
+    width: 100%;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    gap: 10px;
+}
+
+.display-name{
+    width: 15%;
+}
+
+.c-button{
+    width: 40px;
+}
+
+.c-body{
+    width: 60%;
+}
+.pub-button{
+    background-color: black;
+    color: white;
+    border-radius: 10px;
+    padding: 2px 4px;
+}
+
+.pub-button:hover{
+    cursor: pointer;
+    background-color: #333;
+    opacity: 90%;
+}
