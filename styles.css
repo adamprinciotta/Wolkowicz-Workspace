@@ -145,8 +145,10 @@ body{
     /* border-top: solid 1px; */
     /* margin: 1.5rem 0 0; */
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     gap: 1rem;
+    flex-wrap: wrap;
+    margin: 2rem 0;
 }
 
 .team-member-info{
@@ -164,6 +166,7 @@ body{
 .member-info{
     flex: 1;
     display: flex;
+    min-width: 250px;
     flex-direction: column;
     padding-right: 150px;
 }
@@ -181,6 +184,8 @@ body{
     height: auto;
     border-radius: 8px;
     object-fit: cover;
+    display: block;
+    margin: 0 auto;
 }
 
 .alumni-header{
