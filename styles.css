@@ -322,6 +322,7 @@ body {
   background-color: #333;
   opacity: 90%;
 }
+<<<<<<< HEAD
 
 :root {
   --footer-bg: #f4f4f4;
@@ -449,3 +450,5 @@ address {
   height: 36px;
   padding: 0 12px;
 }
+=======
+>>>>>>> origin/class

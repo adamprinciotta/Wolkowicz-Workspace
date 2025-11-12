@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+<<<<<<< HEAD
    <head>
       <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -31,6 +32,113 @@
                      <p class="comment-date"><em>October 5, 2025</em></p>
                   </div>
                </div>
+=======
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Publications - Dr. Wolkowicz Lab</title>
+        <meta name="description" content="Publications from Dr. Wolkowicz's research lab">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="./styles.css">
+    </head>
+    <body>
+        <section class="nav">
+            <a href="home.html">Home</a> |
+            <a href="team.html">Team</a> |
+            <a href="courses.html">Courses</a> |
+            <a href="projects.html">Research</a> |
+            <a href="publications.html">Publications</a>
+            <div class="auth-container">
+            <button id="signinBtn" class="google-signin-btn" onclick="signinWithGoogle()">
+                Sign in with Google
+            </button>
+                <div id="userInfo" class="user-info hidden">
+                    <img id="userAvatar" class="user-avatar" alt="Profile">
+                    <div class="user-details">
+                        <span id="userName"></span>
+                        <span id="userEmail"></span>
+                    </div>
+                    <button id="logoutBtn" class="logout-btn" onclick="logout()">Logout</button>
+                </div>
+            </div>
+        </section>
+        
+        <script src="siteapi/auth.js"></script>
+
+        <h1>Publications</h1>
+
+
+        <h2>2021</h2>
+        <section class="pub-container">
+            <div class="pub-item">
+                <h3></h3>
+                <a class="pub-details" href="https://doi.org/10.1016/j.cobme.2021.100312" target="_blank" class="authors">Eleonora M Aiello, Sunil Deshpande, Başak Özaslan, Kelilah L Wolkowicz, Eyal Dassau, Jordan E Pinsker, Francis J Doyle III, Review of automated insulin delivery systems for individuals with type 1 diabetes: tailored solutions for subpopulations, Current opinion in biomedical engineering</a>
+                <div class="comments-section">
+                    <h4>Comments</h4>
+                    <div class="comments-list">
+                        <div class="comment">
+                            <p class="comment-author"><strong>Steven</strong></p>
+                            <p class="comment-text">This is a awesome research paper. Great work!</p>
+                            <p class="comment-date"><em>October 5, 2025</em></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <hr>
+
+        <h2>2020</h2>
+        <section class="pub-container">
+            <div class="pub-item">
+                <a class="pub-details">K. Wolkowicz, F. J. Doyle, III, E. Dassau, Control of Drug Delivery for Type 1 Diabetes Mellitus, Encyclopedia of Systems and Control</a>
+                <div class="comments-section">
+                    <h4>Comments</h4>
+                    <div class="comments-list">
+                        <div class="comment">
+                            <p class="comment-author"><strong>Modib</strong></p>
+                            <p class="comment-text">This is a awesome research paper. Great work!</p>
+                            <p class="comment-date"><em>October 5, 2025</em></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <hr>
+
+        <section class="pub-container">
+            <div class="pub-item">
+                <a class="pub-details" href="https://doi.org/10.1002/btm2.10201" target="_blank">KL Wolkowicz, EM Aiello, E Vargas, H Teymourian, F Tehrani, J Wang, A review of biomarkers in the context of type 1 diabetes: biological sensing for enhanced glucose controlBioengineering & Translational Medicine</a>
+                <div class="comments-section">
+                    <h4>Comments</h4>
+                    <div class="comments-list">
+                        <div class="comment">
+                            <p class="comment-author"><strong>Adam</strong></p>
+                            <p class="comment-text">This is a awesome research paper. Great work!</p>
+                            <p class="comment-date"><em>October 5, 2025</em></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <hr>
+
+        <section class="pub-container">
+            <div class="pub-item">
+                <h3></h3>
+                <a class="pub-details" href="https://doi.org/10.1115/MSEC2014-4049" target="_blank">Andrew C Barnett, Kelilah Wolkowicz, Jason Z Moore, Vibrating needle cutting force, International Manufacturing Science and Engineering Conference</a>
+                <div class="comments-section">
+                    <h4>Comments</h4>
+                    <div class="comments-list">
+                        <div class="comment">
+                            <p class="comment-author"><strong>Sohail</strong></p>
+                            <p class="comment-text">This is a awesome research paper. Great work!</p>
+                            <p class="comment-date"><em>October 5, 2025</em></p>
+                        </div>
+                    </div>
+                </div>
+>>>>>>> origin/class
             </div>
          </div>
       </section>
@@ -95,6 +203,7 @@
 </html>
 
 
+<<<<<<< HEAD
 <script>
    const API = 'http://localhost:4000';
    
@@ -278,3 +387,31 @@
    
    renderPubsByYear();
 </script>
+=======
+                document.getElementById('cform').addEventListener('submit', async (e) => {
+                    e.preventDefault();
+                    if (!CURRENT_PUB_ID) return;
+                    const form = e.target;
+                    const payload = {
+                        display_name: form.display_name.value,
+                        body: form.body.value
+                    };
+                    const res = await fetch(`${API}/api/publications/${CURRENT_PUB_ID}/comments`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload),
+                        credentials: 'include'
+                    });
+                    if (res.ok) {
+                        form.reset();
+                        loadComments();
+                    } else {
+                        const err = await res.json().catch(() => ({}));
+                        alert(err.error || 'Failed to post comment');
+                    }
+                });
+                loadPublications();
+            </script>
+    </body>
+</html>
+>>>>>>> origin/class
