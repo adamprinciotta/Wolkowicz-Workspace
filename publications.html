@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Publications - Dr. Wolkowicz Lab</title>
+        <meta name="description" content="Publications from Dr. Wolkowicz's research lab">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="./styles.css">
+    </head>
+    <body>
+        <section class="nav">
+            <a href="home.html">Home</a> |
+            <a href="team.html">Team</a> |
+            <a href="courses.html">Courses</a> |
+            <a href="projects.html">Research</a> |
+            <a href="publications.html">Publications</a>
+        </section>
+        
+        <h1>Publications</h1>
+
+
+        <h2>2021</h2>
+        <section class="pub-container">
+            <div class="pub-item">
+                <h3></h3>
+                <a class="pub-details" href="https://doi.org/10.1016/j.cobme.2021.100312" target="_blank" class="authors">Eleonora M Aiello, Sunil Deshpande, Başak Özaslan, Kelilah L Wolkowicz, Eyal Dassau, Jordan E Pinsker, Francis J Doyle III, Review of automated insulin delivery systems for individuals with type 1 diabetes: tailored solutions for subpopulations, Current opinion in biomedical engineering</a>
+                <div class="comments-section">
+                    <h4>Comments</h4>
+                    <div class="comments-list">
+                        <div class="comment">
+                            <p class="comment-author"><strong>Steven</strong></p>
+                            <p class="comment-text">This is a awesome research paper. Great work!</p>
+                            <p class="comment-date"><em>October 5, 2025</em></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <hr>
+
+        <h2>2020</h2>
+        <section class="pub-container">
+            <div class="pub-item">
+                <a class="pub-details">K. Wolkowicz, F. J. Doyle, III, E. Dassau, Control of Drug Delivery for Type 1 Diabetes Mellitus, Encyclopedia of Systems and Control</a>
+                <div class="comments-section">
+                    <h4>Comments</h4>
+                    <div class="comments-list">
+                        <div class="comment">
+                            <p class="comment-author"><strong>Modib</strong></p>
+                            <p class="comment-text">This is a awesome research paper. Great work!</p>
+                            <p class="comment-date"><em>October 5, 2025</em></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <hr>
+
+        <section class="pub-container">
+            <div class="pub-item">
+                <a class="pub-details" href="https://doi.org/10.1002/btm2.10201" target="_blank">KL Wolkowicz, EM Aiello, E Vargas, H Teymourian, F Tehrani, J Wang, A review of biomarkers in the context of type 1 diabetes: biological sensing for enhanced glucose controlBioengineering & Translational Medicine</a>
+                <div class="comments-section">
+                    <h4>Comments</h4>
+                    <div class="comments-list">
+                        <div class="comment">
+                            <p class="comment-author"><strong>Adam</strong></p>
+                            <p class="comment-text">This is a awesome research paper. Great work!</p>
+                            <p class="comment-date"><em>October 5, 2025</em></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <hr>
+
+        <section class="pub-container">
+            <div class="pub-item">
+                <h3></h3>
+                <a class="pub-details" href="https://doi.org/10.1115/MSEC2014-4049" target="_blank">Andrew C Barnett, Kelilah Wolkowicz, Jason Z Moore, Vibrating needle cutting force, International Manufacturing Science and Engineering Conference</a>
+                <div class="comments-section">
+                    <h4>Comments</h4>
+                    <div class="comments-list">
+                        <div class="comment">
+                            <p class="comment-author"><strong>Sohail</strong></p>
+                            <p class="comment-text">This is a awesome research paper. Great work!</p>
+                            <p class="comment-date"><em>October 5, 2025</em></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <hr>
+
+
+        <h3>Publications</h3>
+            <ul id="pubs"></ul>
+                <h3>Comments</h3>
+                <form id = "cform" class = "cform"  style="display:none;">
+                    <!-- name is a placeholder until we get auth working -->
+                    <input name="display_name" class = "display-name" placeholder="Name" />
+                    <input name="body" class = "c-body" placeholder="Write a comment..." required></input>
+                    <button type="submit" class = "c-button">Post</button>
+                </form>
+            <ul id="comments"></ul>
+
+            <script>
+                const API = 'http://localhost:4000';
+                let CURRENT_PUB_ID = null;
+
+                //Prevents malicious comments
+                function escapeHtml(s) {
+                    return String(s).replace(/[&<>"']/g, c => ({
+                        '&': '&amp;',
+                        '<': '&lt;',
+                        '>': '&gt;',
+                        '"': '&quot;',
+                        "'": '&#39;'
+                    }[c]));
+                }
+
+                async function loadPublications() {
+                    const res = await fetch(`${API}/api/publications`);
+                    const pubs = await res.json();
+                    const list = document.getElementById('pubs');
+
+                    list.innerHTML = pubs.map(p => `
+                        ${p.authors_ieee}, ${p.title}, ${p.venue} 
+                        <button type = "button" class = "pub-button" data-id = "${p._id}">
+                        Comments
+                        </button>
+                        <br><br>
+                    `).join('');
+
+                    list.querySelectorAll('button[data-id]').forEach(btn => {
+                        btn.addEventListener('click', () => selectPublication(btn.dataset.id));
+                    });
+                }
+
+                async function selectPublication(id) {
+                    CURRENT_PUB_ID = id;
+                    document.getElementById('cform').style.display = 'flex';
+                    await loadComments();
+                }
+
+                async function loadComments() {
+                    const res = await fetch(`${API}/api/publications/${CURRENT_PUB_ID}/comments`);
+                    const data = await res.json();
+                    // WOrking with escapeHtml function to prevent malicious comments
+                    document.getElementById('comments').innerHTML = data.map(c =>
+                        `<strong>${escapeHtml(c.display_name || 'Anonymous')}</strong>: ${escapeHtml(c.body)} <br><em>${new Date(c.created_at).toLocaleString()}</em><br><br>`
+                    ).join('') || '<li>No comments yet.</li>';
+                }
+
+                document.getElementById('cform').addEventListener('submit', async (e) => {
+                    e.preventDefault();
+                    if (!CURRENT_PUB_ID) return;
+                    const form = e.target;
+                    const payload = {
+                        display_name: form.display_name.value,
+                        body: form.body.value
+                    };
+                    const res = await fetch(`${API}/api/publications/${CURRENT_PUB_ID}/comments`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload),
+                        credentials: 'include'
+                    });
+                    if (res.ok) {
+                        form.reset();
+                        loadComments();
+                    } else {
+                        const err = await res.json().catch(() => ({}));
+                        alert(err.error || 'Failed to post comment');
+                    }
+                });
+                loadPublications();
+            </script>
+    </body>
+</html>
