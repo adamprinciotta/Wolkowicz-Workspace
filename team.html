@@ -15,12 +15,27 @@
   <body>
     <!-- Navigation -->
     <section class="nav">
-      <a href="home.html">Home</a> |
-      <a href="team.html">Team</a> |
-      <a href="courses.html">Courses</a> |
-      <a href="projects.html">Research</a> |
-      <a href="publications.html">Publications</a>
-    </section>
+            <a href="home.html">Home</a> |
+            <a href="team.html">Team</a> |
+            <a href="courses.html">Courses</a> |
+            <a href="projects.html">Research</a> |
+            <a href="publications.html">Publications</a>
+            <div class="auth-container">
+            <button id="signinBtn" class="google-signin-btn" onclick="signinWithGoogle()">
+                Sign in with Google
+            </button>
+                <div id="userInfo" class="user-info hidden">
+                    <img id="userAvatar" class="user-avatar" alt="Profile">
+                    <div class="user-details">
+                        <span id="userName"></span>
+                        <span id="userEmail"></span>
+                    </div>
+                    <button id="logoutBtn" class="logout-btn" onclick="logout()">Logout</button>
+                </div>
+            </div>
+        </section>
+        
+        <script src="siteapi/auth.js"></script>
 
     <div class="team-intro">
       <h1>Research Team</h1>
