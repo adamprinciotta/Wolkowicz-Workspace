@@ -5,6 +5,39 @@ body {
   margin: auto;
 }
 
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    background-color: #f8f9fa;
+    border-bottom: 2px solid #ddd;
+}
+
+.nav-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+/* Logo styles */
+.logo-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.site-logo {
+    height: 50px;
+    width: auto;
+    object-fit: contain;
+    transition: opacity 0.3s;
+}
+
+.site-logo:hover {
+    opacity: 0.8;
+}
+
 .nav {
   width: 100%;
   padding-top: 10px;
@@ -25,12 +58,94 @@ body {
   color: black;
   font-size: 20px;
   font-weight: 500;
+  padding: 8px 12px;
   transition: color 0.2s ease;
 }
 
 .nav a:hover {
   color: gray;
 }
+
+.auth-container {
+    display: flex;
+    align-items: center;
+}
+
+/* Google Sign-in Button */
+.google-signin-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    background-color: #fff;
+    border: 1px solid #dadce0;
+    border-radius: 4px;
+    color: #3c4043;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.google-signin-btn:hover {
+    background-color: #f8f9fa;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* User info container (shown after login) */
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.user-info.hidden {
+    display: none;
+}
+
+/* User avatar */
+.user-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #e0e0e0;
+}
+
+/* User details (name and email) */
+.user-details {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+#userName {
+    font-weight: 600;
+    color: #333;
+    font-size: 14px;
+}
+
+#userEmail {
+    font-size: 12px;
+    color: #666;
+}
+
+/* Logout button */
+.logout-btn {
+    padding: 8px 16px;
+    background-color: #f44336;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.logout-btn:hover {
+    background-color: #d32f2f;
+}
+
 
 .title {
   justify-content: left;
@@ -215,21 +330,45 @@ body {
 }
 
 .courses-subheader {
-  font-size: 18px;
-  font-weight: normal;
+  font-weight: 400;
+  font-size: 1.2em;
   color: black;
-  margin: -10px 0 30px 0;
+  text-align: center;
+  margin: 0 0 40px;
 }
 
 .courseDetails {
-  margin: 40px 0;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px 40px;
 }
 
 .courseItem {
   margin: 30px 0;
+  display: flex;
+  gap: 25px;
+  margin-bottom: 40px;
   padding: 25px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
   border: 1px solid gray;
-  border-radius: 5px;
+}
+
+.course-image {
+    flex-shrink: 0;
+    width: 250px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 6px;
+    border: 2px solid #e0e0e0;
+}
+
+.course-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
 }
 
 .courseItem h3 {
@@ -250,6 +389,7 @@ body {
   line-height: 1.8;
   color: black;
   font-size: 16px;
+  text-align: justify;
   margin: 0;
 }
 
