@@ -15,7 +15,22 @@
             <a href="courses.html">Courses</a> |
             <a href="projects.html">Research</a> |
             <a href="publications.html">Publications</a>
+            <div class="auth-container">
+            <button id="signinBtn" class="google-signin-btn" onclick="signinWithGoogle()">
+                Sign in with Google
+            </button>
+                <div id="userInfo" class="user-info hidden">
+                    <img id="userAvatar" class="user-avatar" alt="Profile">
+                    <div class="user-details">
+                        <span id="userName"></span>
+                        <span id="userEmail"></span>
+                    </div>
+                    <button id="logoutBtn" class="logout-btn" onclick="logout()">Logout</button>
+                </div>
+            </div>
         </section>
+        
+        <script src="siteapi/auth.js"></script>
         
         <h1>Courses</h1>
         <h2 class="courses-subheader">Below are courses taught by Dr. Wolkowicz at UMass Lowell</h2>
@@ -63,7 +78,8 @@
                 <p>Matrix-based classical and modern techniques are applied to the dynamics of control systems. Design of controllers, and full and reduced-order observers. Introduction to optimal control and Kalman filters.</p>
             </div>
         </section>
-        <footer class="site-footer" role="contentinfo" aria-label="Site footer">
+
+                <footer class="site-footer" role="contentinfo" aria-label="Site footer">
   <div class="footer-inner">
     <div class="footer-block address">
       <h3>UMass Lowell</h3>
