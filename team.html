@@ -13,17 +13,24 @@
   </head>
 
   <body>
-    <!-- Navigation -->
-    <section class="nav">
-            <a href="home.html">Home</a> |
-            <a href="team.html">Team</a> |
-            <a href="courses.html">Courses</a> |
-            <a href="projects.html">Research</a> |
-            <a href="publications.html">Publications</a>
+    <div class="header-container">
+            <div class="nav-wrapper">
+                <a href="home.html" class="logo-link">
+                    <img src="images/U-CARE_logo.png" alt="U-CARE Group Logo" class="site-logo">
+                </a>
+                <section class="nav">
+                    <a href="home.html">Home</a> |
+                    <a href="team.html">Team</a> |
+                    <a href="courses.html">Courses</a> |
+                    <a href="projects.html">Research</a> |
+                    <a href="publications.html">Publications</a>
+                </section>
+            </div>
+            
             <div class="auth-container">
-            <button id="signinBtn" class="google-signin-btn" onclick="signinWithGoogle()">
-                Sign in with Google
-            </button>
+                <button id="signinBtn" class="google-signin-btn" onclick="signinWithGoogle()">
+                    Sign in with Google
+                </button>
                 <div id="userInfo" class="user-info hidden">
                     <img id="userAvatar" class="user-avatar" alt="Profile">
                     <div class="user-details">
@@ -33,7 +40,7 @@
                     <button id="logoutBtn" class="logout-btn" onclick="logout()">Logout</button>
                 </div>
             </div>
-        </section>
+        </div>
         
         <script src="siteapi/auth.js"></script>
 
@@ -134,16 +141,16 @@
         {
           name: "Elyas Irankhah",
           title: "PhD Candidate",
-          bio: "Description for student",
-          focus: "[Keywords]",
-          photo: "",
+          bio: "I earned my Ph.D. in Mechanical Engineering at UMass Lowell, with expertise spanning machine learning, deep learning, causal inference, data science, etc,. My technical skill set includes LLMs, physiological/biomedical/clinical and image signal processing, and full-stack AI development. I am an applied researcher and builder with hands-on experience creating predictive models, RAG systems, and inclusive AI-powered tools across healthcare, education, and technology. I have an entrepreneurial mindset, driven to build innovative, scalable AI solutions that address real-world challenges and create meaningful impact.",
+          focus: "Machine Learning Research Scientist | Causal Inference/LLMs & Healthcare AI",
+          photo: "images/ElyasIrankhah.png",
         },
         {
           name: "Masoumeh Farhadi Nia",
           title: "PhD Candidate",
-          bio: "Masoumeh Farhadi Nia is a PhD student in Electrical and Computer Engineering at University of Massachusetts Lowell, where she is a member of CARE, Collaborative Assistive and Rehabilitative Robotics Engineering, and CACT, Center for Advanced Computation and Telecommunications, labs. Her research focuses on Signal Processing and AI, with a particular emphasis on EEG-based Brain-Computer Interface (BCI) signal analysis for electric wheelchair navigation.",
-          focus: "Signal Processing and AI",
-          photo: "",
+          bio: "Masoumeh is a researcher in ECE at UMass Lowell, contributing to research at CARE, Collaborative Assistive and Rehabilitative Robotics Engineering, and CACT, Center for Advanced Computation and Telecommunications, labs. Her focus is on Signal Processing and AI, specializing in EEG-based Brain Computer Interface (BCI) for electric wheelchair navigation.",
+          focus: "Image and Video Processing, Signal Processing and AI, EEG-Based Brain Computer Interface",
+          photo: "images/MasoumehFarhadiNia.png",
         },
         {
           name: "Student Name 4",
