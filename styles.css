@@ -399,6 +399,11 @@ body {
   border-top: 1px solid #ccc;
 }
 
+.course-image {
+  height: 50%;
+  margin: auto;
+}
+
 .pub-details {
   font-size: 18px;
   font-weight: bold;
@@ -409,6 +414,16 @@ body {
 .pub-details:hover {
   color: gray;
   cursor: pointer;
+}
+
+.research h1 {
+  font-size: 50px;
+  font-weight: bold;
+}
+
+.research h3 {
+  font-size: 30px;
+  font-weight: bold;
 }
 
 .researchItem {
@@ -422,6 +437,10 @@ body {
   height: auto;
   border-radius: 8px;
   object-fit: cover;
+}
+
+.researchItemInfo {
+  font-size: 1.5em;
 }
 
 /* .display-name,
