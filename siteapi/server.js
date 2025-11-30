@@ -5,9 +5,7 @@ const passport = require("passport");
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
-
 const app = express();
-
 app.use(express.json());
 app.use(
   cors({
@@ -19,21 +17,15 @@ app.use(
     credentials: true,
   })
 );
-
-// JWT instead of sessions
 app.use(passport.initialize());
-
 const MONGODB_URI = process.env.MONGODB_URI;
 const DB_NAME = process.env.DB_NAME || "test_db";
 const PORT = process.env.PORT || 4000;
 const JWT_SECRET = process.env.SESSION_SECRET || "your_jwt_secret";
-
 if (!MONGODB_URI) {
   console.error("Missing MONGODB_URI in .env");
   process.exit(1);
 }
-
-// User Schema for storing OAuth users
 const UserSchema = new mongoose.Schema({
   google_id: { type: String, required: true, unique: true },
   email: { type: String, required: true },
@@ -41,10 +33,7 @@ const UserSchema = new mongoose.Schema({
   picture: String,
   created_at: { type: Date, default: Date.now },
 });
-
 const User = mongoose.model("User", UserSchema);
-
-// Passport Google Strategy
 passport.use(
   new GoogleStrategy(
     {
@@ -55,7 +44,6 @@ passport.use(
     async (accessToken, refreshToken, profile, done) => {
       try {
         let user = await User.findOne({ google_id: profile.id });
-
         if (!user) {
           user = new User({
             google_id: profile.id,
@@ -72,15 +60,11 @@ passport.use(
     }
   )
 );
-
-// Check JWT token
 const verifyToken = (req, res, next) => {
   const token = req.cookies?.token || req.headers.authorization?.split(" ")[1];
-
   if (!token) {
     return res.status(401).json({ authenticated: false });
   }
-
   try {
     const decoded = jwt.verify(token, JWT_SECRET);
     req.user = decoded;
@@ -89,7 +73,6 @@ const verifyToken = (req, res, next) => {
     return res.status(401).json({ authenticated: false });
   }
 };
-
 mongoose.set("strictQuery", true);
 mongoose
   .connect(MONGODB_URI, { dbName: DB_NAME })
@@ -103,8 +86,6 @@ mongoose
     console.error("MongoDB connection error:", err.message);
     process.exit(1);
   });
-
-// Middleware to check if user is authenticated
 const isAuthenticated = (req, res, next) => {
   if (req.isAuthenticated()) {
     next();
@@ -112,21 +93,14 @@ const isAuthenticated = (req, res, next) => {
     res.status(401).json({ error: "Not authenticated" });
   }
 };
-
-// ==================== AUTH ROUTES ====================
-
-// Google OAuth login route
 app.get(
   "/auth/google",
   passport.authenticate("google", { scope: ["profile", "email"] })
 );
-
-// Google OAuth callback route
 app.get(
   "/auth/google/callback",
   passport.authenticate("google", { session: false }),
   (req, res) => {
-    // Create JWT token
     const token = jwt.sign(
       {
         _id: req.user._id,
@@ -137,20 +111,15 @@ app.get(
       JWT_SECRET,
       { expiresIn: "7d" }
     );
-
-    // Redirect with token
     res.redirect(`http://127.0.0.1:5500/home.html?token=${token}`);
   }
 );
-
-// Get current user
 app.get("/api/auth/me", verifyToken, async (req, res) => {
   try {
     const user = await User.findById(req.user._id);
     if (!user) {
       return res.status(401).json({ authenticated: false });
     }
-
     res.json({
       id: user._id,
       email: user.email,
@@ -161,14 +130,9 @@ app.get("/api/auth/me", verifyToken, async (req, res) => {
     res.status(401).json({ authenticated: false });
   }
 });
-
-// Logout route
 app.post("/api/auth/logout", (req, res) => {
   res.json({ message: "Logged out successfully" });
 });
-
-// ==================== COMMENT ROUTES ====================
-
 const CommentSchema = new mongoose.Schema(
   {
     publication_id: { type: String, required: true },
@@ -183,15 +147,12 @@ const CommentSchema = new mongoose.Schema(
   },
   { timestamps: { createdAt: "created_at", updatedAt: false } }
 );
-
 const Comment = mongoose.model("Comment", CommentSchema);
-
 app.get("/api/health", (req, res) => res.json({ ok: true }));
-
 app.get("/api/publications/:pubId/comments", async (req, res) => {
   try {
     const comments = await Comment.find({ publication_id: req.params.pubId })
-      .populate("user_id", "display_name picture")
+      .populate("user_id", "_id display_name picture")
       .sort({ created_at: -1 });
     res.json(comments);
   } catch (err) {
@@ -199,30 +160,40 @@ app.get("/api/publications/:pubId/comments", async (req, res) => {
     res.status(500).json({ error: "Failed to load comments" });
   }
 });
-
 app.post("/api/publications/:pubId/comments", verifyToken, async (req, res) => {
   try {
     const { display_name, body } = req.body;
     if (!body || !body.trim()) {
       return res.status(400).json({ error: "Comment text is required" });
     }
-
     const comment = await Comment.create({
       publication_id: req.params.pubId,
       user_id: req.user._id,
       display_name: req.user.display_name,
       body: body.trim(),
     });
-
     res.status(201).json(comment);
   } catch (err) {
     console.error("Error saving comment:", err.message);
     res.status(500).json({ error: "Failed to save comment" });
   }
 });
-
-// ==================== PUBLICATION ROUTES ====================
-
+app.delete("/api/comments/:commentId", verifyToken, async (req, res) => {
+  try {
+    const comment = await Comment.findById(req.params.commentId);
+    if (!comment) {
+      return res.status(404).json({ error: "Comment not found" });
+    }
+    if (String(comment.user_id) !== String(req.user._id)) {
+      return res.status(403).json({ error: "You can only delete your own comments" });
+    }
+    await Comment.findByIdAndDelete(req.params.commentId);
+    res.json({ message: "Comment deleted" });
+  } catch (err) {
+    console.error("Error deleting comment:", err.message);
+    res.status(500).json({ error: "Failed to delete comment" });
+  }
+});
 const PublicationSchema = new mongoose.Schema(
   {
     source: { type: String, default: "google_scholar" },
@@ -236,34 +207,14 @@ const PublicationSchema = new mongoose.Schema(
   },
   { timestamps: { createdAt: "created_at", updatedAt: false } }
 );
-
 PublicationSchema.index({ source: 1, external_id: 1 }, { unique: true });
-
-// app.get('/api/publications', async (req, res) => {
-//   try {
-//     const pubs = await mongoose.connection.db
-//       .collection('publications')
-//       .find({ is_active: true })
-//       .project({ title: 1, authors_ieee: 1, year: 1, venue: 1, external_id: 1 })
-//       .sort({ year: -1, created_at: -1 })
-//       .toArray();
-
-//     res.json(pubs);
-//   } catch (e) {
-//     console.error(e);
-//     res.status(500).json({ error: 'Failed to load publications' });
-//   }
-// });
-
 Publication = mongoose.model("Publication", PublicationSchema);
-
 app.get("/api/publications", async (req, res) => {
   const pubs = await Publication.find({ is_active: true })
     .select("_id title authors_ieee year venue external_id doi_url")
     .sort({ year: -1, created_at: -1 });
   res.json(pubs);
 });
-
 app.get("/api/publications/:id/comments/count", async (req, res) => {
   try {
     const n = await mongoose.connection.db
