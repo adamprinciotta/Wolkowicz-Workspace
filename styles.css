@@ -6,36 +6,36 @@ body {
 }
 
 .header-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 30px;
-    background-color: #f8f9fa;
-    border-bottom: 2px solid #ddd;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  background-color: #f8f9fa;
+  border-bottom: 2px solid #ddd;
 }
 
 .nav-wrapper {
-    display: flex;
-    align-items: center;
-    gap: 25px;
+  display: flex;
+  align-items: center;
+  gap: 25px;
 }
 
 /* Logo styles */
 .logo-link {
-    display: flex;
-    align-items: center;
-    text-decoration: none;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
 }
 
 .site-logo {
-    height: 50px;
-    width: auto;
-    object-fit: contain;
-    transition: opacity 0.3s;
+  height: 50px;
+  width: auto;
+  object-fit: contain;
+  transition: opacity 0.3s;
 }
 
 .site-logo:hover {
-    opacity: 0.8;
+  opacity: 0.8;
 }
 
 .nav {
@@ -67,85 +67,84 @@ body {
 }
 
 .auth-container {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 /* Google Sign-in Button */
 .google-signin-btn {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 10px 20px;
-    background-color: #fff;
-    border: 1px solid #dadce0;
-    border-radius: 4px;
-    color: #3c4043;
-    font-size: 14px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: background-color 0.3s, box-shadow 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background-color: #fff;
+  border: 1px solid #dadce0;
+  border-radius: 4px;
+  color: #3c4043;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s, box-shadow 0.3s;
 }
 
 .google-signin-btn:hover {
-    background-color: #f8f9fa;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  background-color: #f8f9fa;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 /* User info container (shown after login) */
 .user-info {
-    display: flex;
-    align-items: center;
-    gap: 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 
 .user-info.hidden {
-    display: none;
+  display: none;
 }
 
 /* User avatar */
 .user-avatar {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 2px solid #e0e0e0;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #e0e0e0;
 }
 
 /* User details (name and email) */
 .user-details {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
 }
 
 #userName {
-    font-weight: 600;
-    color: #333;
-    font-size: 14px;
+  font-weight: 600;
+  color: #333;
+  font-size: 14px;
 }
 
 #userEmail {
-    font-size: 12px;
-    color: #666;
+  font-size: 12px;
+  color: #666;
 }
 
 /* Logout button */
 .logout-btn {
-    padding: 8px 16px;
-    background-color: #f44336;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    font-size: 14px;
-    cursor: pointer;
-    transition: background-color 0.3s;
+  padding: 8px 16px;
+  background-color: #f44336;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s;
 }
 
 .logout-btn:hover {
-    background-color: #d32f2f;
+  background-color: #d32f2f;
 }
-
 
 .title {
   justify-content: left;
@@ -357,18 +356,18 @@ body {
 }
 
 .course-image {
-    flex-shrink: 0;
-    width: 250px;
-    height: 200px;
-    object-fit: cover;
-    border-radius: 6px;
-    border: 2px solid #e0e0e0;
+  flex-shrink: 0;
+  width: 250px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 6px;
+  border: 2px solid #e0e0e0;
 }
 
 .course-content {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .courseItem h3 {
@@ -571,40 +570,136 @@ address {
   }
 }
 
+.pub-year {
+  margin-bottom: 40px;
+}
+
+.year-header {
+  font-size: 24px;
+  border-bottom: 2px solid #eee;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.pub-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
 .pub-item-line {
-  margin-bottom: 12px;
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
+
+.pub-item-line:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  border-color: #d0d0d0;
+}
+
 .citation {
-  margin-bottom: 6px;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #2c3e50;
 }
+
+.citation a {
+  color: #000000;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.citation a:hover {
+  text-decoration: underline;
+}
+
 .comment-toggle {
-  background: #000;
-  color: #fff;
-  border: none;
-  border-radius: 8px;
-  padding: 6px 10px;
+  align-self: flex-start;
+  background: transparent;
+  color: #666;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  padding: 6px 16px;
+  font-size: 13px;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
+
 .comment-toggle:hover {
-  background: #333;
+  background: #f5f5f5;
+  color: #333;
+  border-color: #bbb;
 }
+
 .comments-wrap {
-  margin-top: 8px;
-  padding: 8px 10px;
-  background: #f7f7f7;
+  margin-top: 10px;
+  background: #f8f9fa;
   border-radius: 8px;
+  padding: 20px;
+  border: 1px solid #eee;
 }
+
+.comments-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 15px 0;
+}
+
+.comments-list li {
+  padding: 10px 0;
+  border-bottom: 1px solid #eee;
+  font-size: 14px;
+  color: #444;
+}
+
+.comments-list li:last-child {
+  border-bottom: none;
+}
+
+.comments-list strong {
+  color: #222;
+  font-weight: 600;
+}
+
+.comments-list em {
+  font-size: 12px;
+  color: #888;
+  margin-left: 8px;
+}
+
 .cform-inline {
   display: flex;
-  gap: 8px;
-  margin-top: 8px;
+  gap: 10px;
+  margin-top: 10px;
 }
+
 .cform-inline input {
   flex: 1;
-  height: 36px;
-  padding: 6px 10px;
+  padding: 10px 14px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 14px;
 }
+
 .cform-inline button {
-  height: 36px;
-  padding: 0 12px;
+  padding: 0 20px;
+  background: #0056b3;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.cform-inline button:hover {
+  background: #004494;
 }
