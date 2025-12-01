@@ -111,14 +111,6 @@
      }[c]));
    }
    
-   function formatIEEE(p) {
-     const authors = p.authors_ieee ? escapeHtml(p.authors_ieee.trim()) : '';
-     const title   = p.title ? `"${escapeHtml(p.title.trim())}"` : '';
-     const venue   = p.venue ? escapeHtml(p.venue.trim()) : '';
-     const year    = p.year ? String(p.year) : '';
-     return [authors, title, venue, year].filter(Boolean).join(', ');
-   }
-   
    function pickLink(p) {
      return p.doi_url || p.landing_page_url || p.external_id || '#';
    }
@@ -154,11 +146,11 @@
       if (comments.length > 0) {
         html = comments.map(c => {
           const isCreator = currentUser && c.user_id && currentUser.id === c.user_id._id;
-          const deleteBtn = isCreator ? `<button onclick="deleteComment('${c._id}', '${c.publication_id}')" style="margin-left: 10px; color: red; cursor: pointer; border: none; background: none; text-decoration: underline;">Delete</button>` : '';
+          const deleteBtn = isCreator ? `<button onclick="deleteComment('${c._id}', '${c.publication_id}')" style="margin-left: 10px; color: #e74c3c; cursor: pointer; border: none; background: none; text-decoration: underline; font-weight: 500;">Delete</button>` : '';
           return `<li><strong>${escapeHtml(c.display_name || 'Anonymous')}</strong>: ${escapeHtml(c.body)} <em>${new Date(c.created_at).toLocaleString()}</em> ${deleteBtn}</li>`;
         }).join('');
       } else {
-        html = '<li>No comments yet.</li>';
+        html = '<li style="color: #7a8a99;">No comments yet.</li>';
       }
       el.innerHTML = html;
     }
@@ -181,47 +173,47 @@
      const container = document.getElementById('pubs-by-year');
      container.innerHTML = years.map(y => {
        const items = groups[y].map(p => {
-         const citation = formatIEEE(p);
-         const href = pickLink(p);
-         const linkHtml = href && href !== '#'
-           ? `<a href="${href}" target="_blank" rel="noopener">${citation}</a>`
-           : citation;
-   
          const pid = (p._id && String(p._id)) || p.external_id;
          const cWrapId = `comments-wrap-${pid}`;
          const cListId = `comments-list-${pid}`;
          const cCountId = `comments-count-${pid}`;
          const cFormId = `cform-${pid}`;
-
+         
+         const href = pickLink(p);
+         const hasLink = href && href !== '#';
+         
          const formHtml = currentUser ? `
            <form class="cform-inline" id="${cFormId}" data-id="${pid}">
              <input name="body" placeholder="Write a comment..." required />
              <button type="submit">Post</button>
            </form>
-         ` : `<p style="color: #999; font-size: 14px;"><em>Sign in to comment</em></p>`;
+         ` : `<p style="color: #7a8a99; font-size: 14px;"><em>Sign in to comment</em></p>`;
    
          return `
-           <li class="pub-item-line">
-             <div class="citation">${linkHtml}</div>
-   
-             <button type="button" class="comment-toggle" data-id="${pid}">
-               Comments (<span id="${cCountId}">…</span>)
-             </button>
-   
+           <div class="pub-item-redesigned">
+             <div class="pub-title">${escapeHtml(p.title || 'Untitled')}</div>
+             <div class="pub-authors">${escapeHtml(p.authors_ieee || 'No authors listed')}</div>
+             <div class="pub-actions">
+               ${hasLink ? `<a href="${href}" target="_blank" rel="noopener" class="pub-link-btn">View Article</a>` : ''}
+               <button type="button" class="comment-toggle" data-id="${pid}">
+                 Comments (<span id="${cCountId}">…</span>)
+               </button>
+             </div>
+             
              <div class="comments-wrap" id="${cWrapId}" hidden>
                <ul class="comments-list" id="${cListId}"></ul>
                ${formHtml}
              </div>
-           </li>
+           </div>
          `;
        }).join('');
    
        return `
          <section class="pub-year">
            <h3 class="year-header">${escapeHtml(y)}</h3>
-           <ol class="pub-list">
+           <div class="pub-list">
              ${items}
-           </ol>
+           </div>
          </section>
        `;
      }).join('');
