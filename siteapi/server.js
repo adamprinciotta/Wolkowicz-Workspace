@@ -22,6 +22,7 @@ const MONGODB_URI = process.env.MONGODB_URI;
 const DB_NAME = process.env.DB_NAME || "test_db";
 const PORT = process.env.PORT || 4000;
 const JWT_SECRET = process.env.SESSION_SECRET || "your_jwt_secret";
+const ADMIN_EMAIL = process.env.ADMIN_EMAIL || "";
 if (!MONGODB_URI) {
   console.error("Missing MONGODB_URI in .env");
   process.exit(1);
@@ -72,6 +73,12 @@ const verifyToken = (req, res, next) => {
   } catch (err) {
     return res.status(401).json({ authenticated: false });
   }
+};
+const verifyAdmin = (req, res, next) => {
+  if (!req.user || req.user.email !== ADMIN_EMAIL) {
+    return res.status(403).json({ error: "Admin access required" });
+  }
+  next();
 };
 mongoose.set("strictQuery", true);
 mongoose
@@ -125,6 +132,7 @@ app.get("/api/auth/me", verifyToken, async (req, res) => {
       email: user.email,
       display_name: user.display_name,
       picture: user.picture,
+      is_admin: user.email.toLowerCase() === ADMIN_EMAIL.toLowerCase(),
     });
   } catch (err) {
     res.status(401).json({ authenticated: false });
@@ -184,7 +192,9 @@ app.delete("/api/comments/:commentId", verifyToken, async (req, res) => {
     if (!comment) {
       return res.status(404).json({ error: "Comment not found" });
     }
-    if (String(comment.user_id) !== String(req.user._id)) {
+    const isCreator = String(comment.user_id) === String(req.user._id);
+    const isAdmin = req.user.email.toLowerCase() === ADMIN_EMAIL.toLowerCase();
+    if (!isCreator && !isAdmin) {
       return res.status(403).json({ error: "You can only delete your own comments" });
     }
     await Comment.findByIdAndDelete(req.params.commentId);

@@ -146,7 +146,9 @@
       if (comments.length > 0) {
         html = comments.map(c => {
           const isCreator = currentUser && c.user_id && currentUser.id === c.user_id._id;
-          const deleteBtn = isCreator ? `<button onclick="deleteComment('${c._id}', '${c.publication_id}')" style="margin-left: 10px; color: #e74c3c; cursor: pointer; border: none; background: none; text-decoration: underline; font-weight: 500;">Delete</button>` : '';
+          const isAdmin = currentUser && currentUser.is_admin;
+          const canDelete = isCreator || isAdmin;
+          const deleteBtn = canDelete ? `<button onclick="deleteComment('${c._id}', '${c.publication_id}')" style="margin-left: 10px; color: #e74c3c; cursor: pointer; border: none; background: none; text-decoration: underline; font-weight: 500;">Delete</button>` : '';
           return `<li><strong>${escapeHtml(c.display_name || 'Anonymous')}</strong>: ${escapeHtml(c.body)} <em>${new Date(c.created_at).toLocaleString()}</em> ${deleteBtn}</li>`;
         }).join('');
       } else {
