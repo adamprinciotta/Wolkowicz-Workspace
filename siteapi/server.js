@@ -118,7 +118,7 @@ app.get(
       JWT_SECRET,
       { expiresIn: "7d" }
     );
-    res.redirect(`http://127.0.0.1:5500/home.html?token=${token}`);
+    res.redirect(`http://127.0.0.1:5500/index.html?token=${token}`);
   }
 );
 app.get("/api/auth/me", verifyToken, async (req, res) => {

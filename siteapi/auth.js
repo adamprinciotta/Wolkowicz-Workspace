@@ -93,7 +93,7 @@ function showSigninButton() {
 // Logout
 function logout() {
     localStorage.removeItem('token');
-    window.location.href = 'http://127.0.0.1:5500/home.html';
+    window.location.href = 'http://127.0.0.1:5500/index.html';
 }
 
 // Get token from URL redirect
