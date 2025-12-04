@@ -118,7 +118,7 @@ app.get(
       JWT_SECRET,
       { expiresIn: "7d" }
     );
-    res.redirect(`http://127.0.0.1:5500/home.html?token=${token}`);
+    res.redirect(`http://127.0.0.1:5500/index.html?token=${token}`);
   }
 );
 app.get("/api/auth/me", verifyToken, async (req, res) => {
@@ -220,7 +220,7 @@ const PublicationSchema = new mongoose.Schema(
 PublicationSchema.index({ source: 1, external_id: 1 }, { unique: true });
 Publication = mongoose.model("Publication", PublicationSchema);
 app.get("/api/publications", async (req, res) => {
-  const pubs = await Publication.find({ is_active: true })
+  const pubs = await Publication.find({ is_active: true, year: { $ne: 2003 } })
     .select("_id title authors_ieee year venue external_id doi_url")
     .sort({ year: -1, created_at: -1 });
   res.json(pubs);
