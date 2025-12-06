@@ -15,7 +15,7 @@ function checkUserAuthentication() {
         return;
     }
     
-    fetch('http://localhost:4000/api/auth/me', {
+    fetch('https://wolkowicz-workspace.onrender.com/api/auth/me', {
         headers: {
             'Authorization': `Bearer ${token}`
         }
@@ -37,7 +37,7 @@ function checkUserAuthentication() {
 
 // Redirect to Google login
 function signinWithGoogle() {
-    window.location.href = 'http://localhost:4000/auth/google';
+    window.location.href = 'https://wolkowicz-workspace.onrender.com/auth/google';
 }
 
 // Display user info
@@ -93,7 +93,7 @@ function showSigninButton() {
 // Logout
 function logout() {
     localStorage.removeItem('token');
-    window.location.href = 'http://127.0.0.1:5500/index.html';
+    window.location.href = 'https://wolkowicz-workspace-three.vercel.app/index.html';
 }
 
 // Get token from URL redirect

@@ -10,6 +10,9 @@ app.use(express.json());
 app.use(
   cors({
     origin: [
+      "https://wolkowicz-workspace-three.vercel.app",
+      "https://wolkowicz-workspace-git-class-adamprinciottas-projects.vercel.app",
+      "https://wolkowicz-workspace-fxmng13yy-adamprinciottas-projects.vercel.app",
       "http://localhost:5500",
       "http://127.0.0.1:5500",
       "http://localhost:3000",
@@ -86,7 +89,7 @@ mongoose
   .then(() => {
     console.log("MongoDB connected");
     app.listen(PORT, () => {
-      console.log(`Server listening on http://localhost:${PORT}`);
+      console.log(`Server listening on port ${PORT}`);
     });
   })
   .catch((err) => {
@@ -118,7 +121,7 @@ app.get(
       JWT_SECRET,
       { expiresIn: "7d" }
     );
-    res.redirect(`http://127.0.0.1:5500/index.html?token=${token}`);
+    res.redirect(`https://wolkowicz-workspace-three.vercel.app/index.html?token=${token}`);
   }
 );
 app.get("/api/auth/me", verifyToken, async (req, res) => {
