@@ -372,7 +372,6 @@ body {
   line-height: 1.8;
   color: black;
   font-size: 16px;
-  text-align: justify;
   margin: 0;
 }
 
@@ -698,4 +697,100 @@ address {
   margin-top: 15px;
   padding-top: 15px;
   border-top: 1px solid #e0e0e0;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+@media (max-width: 1350px){
+  .header-container{
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .auth-container{
+    padding-top: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  body {
+    width: 90vw;
+  }
+
+  .header-container,
+  .nav-wrapper,
+  .homeIntro,
+  .team-member-row,
+  .courseItem,
+  .researchItem,
+  .pub-actions,
+  .cform-inline {
+    flex-direction: column;
+  }
+
+  .nav,
+  .gallery {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .auth-container,
+  .nav {
+    justify-content: center;
+    width: 100%;
+  }
+
+  .member-info {
+    padding-right: 0;
+    min-width: unset;
+  }
+
+  .homeBanner h1 {
+    font-size: clamp(1.5rem, 5vw, 4rem);
+  }
+
+  .auth-container {
+    padding-top: 1rem;
+  }
+
+  .site-footer{
+    width: 90%;
+    justify-content: center;
+
+  }
+
+  .member-header{
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .researchItemInfo{
+    padding: 1rem;
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    width: 95vw;
+  }
+
+  .footer-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .inline-links {
+    justify-content: center;
+  }
 }

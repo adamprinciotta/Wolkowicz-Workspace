@@ -99,35 +99,35 @@
       }
 
       // Alumni Row component
-      function AlumniRow({ name, degree, current }) {
-        return (
-          <tr>
-            <td>{name}</td>
-            <td>{degree}</td>
-            <td>{current}</td>
-          </tr>
-        );
-      }
+      // function AlumniRow({ name, degree, current }) {
+      //   return (
+      //     <tr>
+      //       <td>{name}</td>
+      //       <td>{degree}</td>
+      //       <td>{current}</td>
+      //     </tr>
+      //   );
+      // }
 
-      // Alumni Table component
-      function AlumniTable({ alumni }) {
-        return (
-          <table className="alumni-table">
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Former Position</th>
-                <th>Current Position</th>
-              </tr>
-            </thead>
-            <tbody>
-              {alumni.map((a, index) => (
-                <AlumniRow key={index} {...a} />
-              ))}
-            </tbody>
-          </table>
-        );
-      }
+      // // Alumni Table component
+      // function AlumniTable({ alumni }) {
+      //   return (
+      //     <table className="alumni-table">
+      //       <thead>
+      //         <tr>
+      //           <th>Name</th>
+      //           <th>Former Position</th>
+      //           <th>Current Position</th>
+      //         </tr>
+      //       </thead>
+      //       <tbody>
+      //         {alumni.map((a, index) => (
+      //           <AlumniRow key={index} {...a} />
+      //         ))}
+      //       </tbody>
+      //     </table>
+      //   );
+      // }
 
       // Team data
       const teamMembers = [
@@ -135,7 +135,7 @@
           name: "Kelilah Wolkowicz",
           title: "Assistant Professor, Mechanical and Industrial Engineering",
           bio: "Kelilah studies problems in healthcare that could be solved by applying design, control theory, and robotics. Her research focuses on developing methods and mechanisms to further enhance or promote user independence, while addressing users’ needs to remain, as much as possible, integrated socially and productively as members of their communities. Kelilah is an engineering faculty advocate for the River Hawks Scholar Academy, an engineering faculty fellow for DifferenceMaker, and a faculty advisor for the Society of Women Engineers UML chapter.",
-          focus: "[Keywords]",
+          focus: "Design, Control Theory, Robotics",
           photo: "images/home.webp",
         },
         {
@@ -143,35 +143,16 @@
           title: "PhD Candidate",
           bio: "Masoumeh is a researcher in ECE at UMass Lowell, contributing to research at CARE, Collaborative Assistive and Rehabilitative Robotics Engineering, and CACT, Center for Advanced Computation and Telecommunications, labs. Her focus is on Signal Processing and AI, specializing in EEG-based Brain Computer Interface (BCI) for electric wheelchair navigation.",
           focus: "Image and Video Processing, Signal Processing and AI, EEG-Based Brain Computer Interface",
-          photo: "images/MasoumehFarhadiNia.png",
+          photo: "images/MasoumehFarhadiNia.PNG",
         },
         {
           name: "Elyas Irankhah",
           title: "Alumni",
           bio: "I earned my Ph.D. in Mechanical Engineering at UMass Lowell, with expertise spanning machine learning, deep learning, causal inference, data science, etc,. My technical skill set includes LLMs, physiological/biomedical/clinical and image signal processing, and full-stack AI development. I am an applied researcher and builder with hands-on experience creating predictive models, RAG systems, and inclusive AI-powered tools across healthcare, education, and technology. I have an entrepreneurial mindset, driven to build innovative, scalable AI solutions that address real-world challenges and create meaningful impact.",
           focus: "Machine Learning Research Scientist | Causal Inference/LLMs & Healthcare AI",
-          photo: "images/ElyasIrankhah.png",
+          photo: "images/ElyasIrankhah.PNG",
         },
       ];
-/*
-      // Alumni data
-      const alumni = [
-        {
-          name: "Alumni 1",
-          degree: "Degree [Year]",
-          current: "Current Position",
-        },
-        {
-          name: "Alumni 2",
-          degree: "Degree [Year]",
-          current: "Current Position",
-        },
-        {
-          name: "Alumni 3",
-          degree: "Degree [Year]",
-          current: "Current Position",
-        },
-      ];*/
 
       // Section wrapper for team members
       function TeamSection() {
@@ -185,16 +166,16 @@
       }
 
       // Section wrapper for alumni
-      function AlumniSection() {
-        return <AlumniTable alumni={alumni} />;
-      }
+      // function AlumniSection() {
+      //   return <AlumniTable alumni={alumni} />;
+      // }
 
       // Mount React components
       const teamRoot = ReactDOM.createRoot(document.getElementById("team-root"));
       teamRoot.render(<TeamSection />);
 
-      const alumniRoot = ReactDOM.createRoot(document.getElementById("alumni-root"));
-      alumniRoot.render(<AlumniSection />);
+      // const alumniRoot = ReactDOM.createRoot(document.getElementById("alumni-root"));
+      // alumniRoot.render(<AlumniSection />);
     </script>
 
             <footer class="site-footer" role="contentinfo" aria-label="Site footer">
