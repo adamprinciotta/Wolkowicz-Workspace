@@ -293,14 +293,15 @@
      });
    }
    
-   getCurrentUser().then(() => {
-     renderPubsByYear();
-   });
+  //  getCurrentUser().then(() => {
+  //    renderPubsByYear();
+  //  });
+   getCurrentUser()
+   renderPubsByYear()
 
    window.addEventListener('storage', () => {
-     getCurrentUser().then(() => {
-       renderPubsByYear();
-     });
+     getCurrentUser()
+     renderPubsByYear()
    });
 </script>
                
