@@ -1,113 +1,309 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Publications - Dr. Wolkowicz Lab</title>
-        <meta name="description" content="Publications from Dr. Wolkowicz's research lab">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="./styles.css">
-    </head>
+   <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <title>Publications - Dr. Wolkowicz Lab</title>
+      <meta name="description" content="Publications from Dr. Wolkowicz's research lab">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="./styles.css">
+   </head>
     <body>
-        <section class="nav">
-            <a href="home.html">Home</a> |
-            <a href="team.html">Team</a> |
-            <a href="courses.html">Courses</a> |
-            <a href="projects.html">Research</a> |
-            <a href="publications.html">Publications</a>
-        </section>
+        <div class="header-container">
+            <div class="nav-wrapper">
+                <a href="index.html" class="logo-link">
+                    <img src="images/U-CARE_logo.png" alt="U-CARE Group Logo" class="site-logo">
+                </a>
+                <section class="nav">
+                    <a href="index.html">Home</a> |
+                    <a href="team.html">Team</a> |
+                    <a href="courses.html">Courses</a> |
+                    <a href="projects.html">Research</a> |
+                    <a href="publications.html">Publications</a>
+                </section>
+            </div>
+            
+            <div class="auth-container">
+                <button id="signinBtn" class="google-signin-btn" onclick="signinWithGoogle()">
+                    Sign in with Google
+                </button>
+                <div id="userInfo" class="user-info hidden">
+                    <img id="userAvatar" class="user-avatar" alt="Profile">
+                    <div class="user-details">
+                        <span id="userName"></span>
+                        <span id="userEmail"></span>
+                    </div>
+                    <button id="logoutBtn" class="logout-btn" onclick="logout()">Logout</button>
+                </div>
+            </div>
+        </div>
         
+        <script src="siteapi/auth.js"></script>
         <h1>Publications</h1>
-        
-        <section class="pub-container">
-            <div class="pub-item">
-                <h3>Control of Drug Delivery for Type 1 Diabetes Mellitus</h3>
-                <p class="authors">K. Wolkowicz, F. J. Doyle, III, E. Dassau</p>
-                <p class="pub-details">
-                    In: Baillieul J., Samad T. (eds) Encyclopedia of Systems and Control. Springer, London. 2020.
-                </p>
-                
-                <div class="comments-section">
-                    <h4>Comments</h4>
-                    <div class="comments-list">
-                        <div class="comment">
-                            <p class="comment-author"><strong>Modib</strong></p>
-                            <p class="comment-text">This is a awesome research paper. Great work!</p>
-                            <p class="comment-date"><em>October 5, 2025</em></p>
-                        </div>
-                    </div>
+        <h2>Publications</h2>
+        <div id="pubs-by-year"></div>
+        <footer class="site-footer" role="contentinfo" aria-label="Site footer">
+            <div class="footer-inner">
+                <div class="footer-block address">
+                    <h3>UMass Lowell</h3>
+                    <address>
+                        1 University Ave<br>
+                        Lowell, MA 01854
+                    </address>
+                </div>
+                <div class="footer-block contact">
+                    <h3>Contact</h3>
+                    <p>
+                        <a class="email-link" href="mailto:kelilah_wolkowicz@uml.edu">kelilah_wolkowicz@uml.edu</a>
+                    </p>
+                </div>
+                <div class="footer-block links">
+                    <h3>Profiles</h3>
+                    <ul class="inline-links" aria-label="External profiles">
+                        <li>
+                            <a href="https://scholar.google.com/citations?user=DQwmmCIAAAAJ&hl=en" target="_blank" rel="noopener noreferrer">
+                                <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" focusable="false">
+                                    <path fill="currentColor" d="M12 2L1 7l11 5 9-4.09V17h2V7z"></path>
+                                    <path fill="currentColor" d="M11 12.98L3 9v6l8 3 8-3v-6l-8 3z"></path>
+                                </svg>
+                                Google Scholar
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.linkedin.com/in/kelilahwolkowicz/" target="_blank" rel="noopener noreferrer">
+                                <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" focusable="false">
+                                    <path fill="currentColor" d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM.5 8h4v14h-4V8zm7 0h3.8v1.9h.1c.5-.9 1.8-1.8 3.7-1.8 4 0 4.8 2.6 4.8 6V22h-4v-6.5c0-1.6 0-3.6-2.2-3.6-2.2 0-2.5 1.7-2.5 3.5V22h-4V8z"/>
+                                </svg>
+                                LinkedIn
+                            </a>
+                        </li>
+                    </ul>
                 </div>
             </div>
-        </section>
-
-        <hr>
-
-        <section class="pub-container">
-            <div class="pub-item">
-                <h3>Article 2</h3>
-                <p class="authors">K. Wolkowicz</p>
-                <p class="pub-details">
-                    Blah Blah Blah blah blah blah
-                </p>
-                
-                <div class="comments-section">
-                    <h4>Comments</h4>
-                    <div class="comments-list">
-                        <div class="comment">
-                            <p class="comment-author"><strong>Adam</strong></p>
-                            <p class="comment-text">This is a awesome research paper. Great work!</p>
-                            <p class="comment-date"><em>October 5, 2025</em></p>
-                        </div>
-                    </div>
-                </div>
+            <div class="footer-bottom">
+                <small>&copy;UMass Lowell</small>
             </div>
-        </section>
+        </footer>
 
-        <hr>
+<script>
+   const API = 'https://wolkowicz-workspace.onrender.com';
+   let currentUser = null;
 
-        <section class="pub-container">
-            <div class="pub-item">
-                <h3>Article 3</h3>
-                <p class="authors">K. Wolkowicz</p>
-                <p class="pub-details">
-                    Blah Blah Blah blah blah blah
-                </p>
-                
-                <div class="comments-section">
-                    <h4>Comments</h4>
-                    <div class="comments-list">
-                        <div class="comment">
-                            <p class="comment-author"><strong>Steven</strong></p>
-                            <p class="comment-text">This is a awesome research paper. Great work!</p>
-                            <p class="comment-date"><em>October 5, 2025</em></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+   async function getCurrentUser() {
+     const token = localStorage.getItem('token');
+     if (!token) return null;
+     try {
+       const res = await fetch(`${API}/api/auth/me`, {
+         headers: { 'Authorization': `Bearer ${token}` }
+       });
+       if (!res.ok) return null;
+       const user = await res.json();
+       currentUser = user;
+       return user;
+     } catch (e) {
+       return null;
+     }
+   }
+   
+   function escapeHtml(s) {
+     return String(s ?? '').replace(/[&<>"']/g, c => ({
+       '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
+     }[c]));
+   }
+   
+   function pickLink(p) {
+     return p.doi_url || p.landing_page_url || p.external_id || '#';
+   }
+   
+   async function fetchComments(pubId) {
+     const r = await fetch(`${API}/api/publications/${pubId}/comments`, { cache: 'no-store' });
+     if (!r.ok) throw new Error('comments fetch failed');
+     return r.json();
+   }
 
-        <hr>
+   async function deleteComment(commentId, pubId) {
+     if (!confirm('Delete this comment?')) return;
+     
+     const token = localStorage.getItem('token');
+     const r = await fetch(`${API}/api/comments/${commentId}`, {
+       method: 'DELETE',
+       headers: { 'Authorization': `Bearer ${token}` }
+     });
+     
+     if (r.ok) {
+       const data = await fetchComments(pubId);
+       const list = document.getElementById(`comments-list-${pubId}`);
+       const countEl = document.getElementById(`comments-count-${pubId}`);
+       renderCommentList(list, data);
+       countEl.textContent = String(data.length);
+     } else {
+       alert('Failed to delete comment');
+     }
+   }
+   
+    function renderCommentList(el, comments) {
+      let html = '';
+      if (comments.length > 0) {
+        html = comments.map(c => {
+          const isCreator = currentUser && c.user_id && currentUser.id === c.user_id._id;
+          const isAdmin = currentUser && currentUser.is_admin;
+          const canDelete = isCreator || isAdmin;
+          const deleteBtn = canDelete ? `<button onclick="deleteComment('${c._id}', '${c.publication_id}')" style="margin-left: 10px; color: #e74c3c; cursor: pointer; border: none; background: none; text-decoration: underline; font-weight: 500;">Delete</button>` : '';
+          return `<li><strong>${escapeHtml(c.display_name || 'Anonymous')}</strong>: ${escapeHtml(c.body)} <em>${new Date(c.created_at).toLocaleString()}</em> ${deleteBtn}</li>`;
+        }).join('');
+      } else {
+        html = '<li style="color: #7a8a99;">No comments yet.</li>';
+      }
+      el.innerHTML = html;
+    }
+   
+    async function renderPubsByYear() {
+     const res  = await fetch(`${API}/api/publications`, { cache: 'no-store' });
+     const pubs = await res.json();
+   
+     const groups = pubs.reduce((acc, p) => {
+       const key = p.year ? String(p.year) : 'Undated';
+       (acc[key] ||= []).push(p);
+       return acc;
+     }, {});
+     const years = Object.keys(groups).sort((a, b) => {
+       if (a === 'Undated') return 1;
+       if (b === 'Undated') return -1;
+       return Number(b) - Number(a);
+     });
+   
+     const container = document.getElementById('pubs-by-year');
+     container.innerHTML = years.map(y => {
+       const items = groups[y].map(p => {
+         const pid = (p._id && String(p._id)) || p.external_id;
+         const cWrapId = `comments-wrap-${pid}`;
+         const cListId = `comments-list-${pid}`;
+         const cCountId = `comments-count-${pid}`;
+         const cFormId = `cform-${pid}`;
+         
+         const href = pickLink(p);
+         const hasLink = href && href !== '#';
+         
+         const formHtml = currentUser ? `
+           <form class="cform-inline" id="${cFormId}" data-id="${pid}">
+             <input name="body" placeholder="Write a comment..." required />
+             <button type="submit">Post</button>
+           </form>
+         ` : `<p style="color: #7a8a99; font-size: 14px;"><em>Sign in to comment</em></p>`;
+   
+         return `
+           <div class="pub-item-redesigned">
+             <div class="pub-title">${escapeHtml(p.title || 'Untitled')}</div>
+             <div class="pub-authors">${escapeHtml(p.authors_ieee || 'No authors listed')}</div>
+             <div class="pub-actions">
+               ${hasLink ? `<a href="${href}" target="_blank" rel="noopener" class="pub-link-btn">View Article</a>` : ''}
+               <button type="button" class="comment-toggle" data-id="${pid}">
+                 Comments (<span id="${cCountId}">…</span>)
+               </button>
+             </div>
+             
+             <div class="comments-wrap" id="${cWrapId}" hidden>
+               <ul class="comments-list" id="${cListId}"></ul>
+               ${formHtml}
+             </div>
+           </div>
+         `;
+       }).join('');
+   
+       return `
+         <section class="pub-year">
+           <h3 class="year-header">${escapeHtml(y)}</h3>
+           <div class="pub-list">
+             ${items}
+           </div>
+         </section>
+       `;
+     }).join('');
+   
+     container.querySelectorAll('.comment-toggle').forEach(btn => {
+       btn.addEventListener('click', async () => {
+         const pubId = btn.dataset.id;
+         const wrap = document.getElementById(`comments-wrap-${pubId}`);
+         const list = document.getElementById(`comments-list-${pubId}`);
+         const countEl = document.getElementById(`comments-count-${pubId}`);
+   
+         const opening = wrap.hasAttribute('hidden');
+         if (opening) {
+           try {
+             const data = await fetchComments(pubId);
+             renderCommentList(list, data);
+             countEl.textContent = String(data.length);
+           } catch {
+             list.innerHTML = '<li>Failed to load comments.</li>';
+             countEl.textContent = '?';
+           }
+           wrap.removeAttribute('hidden');
+         } else {
+           wrap.setAttribute('hidden', '');
+         }
+       });
+     });
 
-        <section class="pub-container">
-            <div class="pub-item">
-                <h3>Article 4</h3>
-                <p class="authors">K. Wolkowicz</p>
-                <p class="pub-details">
-                    Blah Blah Blah blah blah blah
-                </p>
-                <div class="comments-section">
-                    <h4>Comments</h4>
-                    <div class="comments-list">
-                        <div class="comment">
-                            <p class="comment-author"><strong>Sohail</strong></p>
-                            <p class="comment-text">This is a awesome research paper. Great work!</p>
-                            <p class="comment-date"><em>October 5, 2025</em></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+     if (currentUser) {
+       container.querySelectorAll('.cform-inline').forEach(form => {
+         form.addEventListener('submit', async (e) => {
+           e.preventDefault();
+           const pubId = form.dataset.id;
+           const list = document.getElementById(`comments-list-${pubId}`);
+           const countEl = document.getElementById(`comments-count-${pubId}`);
+     
+           const payload = {
+             body: form.body.value
+           };
+     
+           const token = localStorage.getItem('token');
+           const r = await fetch(`${API}/api/publications/${pubId}/comments`, {
+             method: 'POST',
+             headers: { 
+               'Content-Type': 'application/json',
+               'Authorization': `Bearer ${token}`
+             },
+             body: JSON.stringify(payload),
+             credentials: 'include'
+           });
+     
+           if (r.ok) {
+             form.reset();
+             const data = await fetchComments(pubId);
+             renderCommentList(list, data);
+             countEl.textContent = String(data.length);
+           } else {
+             const err = await r.json().catch(() => ({}));
+             alert(err.error || 'Failed to post comment');
+           }
+         });
+       });
+     }
+   
+      container.querySelectorAll('.comment-toggle').forEach(async btn => {
+       const pubId = btn.dataset.id;
+       const countEl = document.getElementById(`comments-count-${pubId}`);
+       try {
+         const r = await fetch(`${API}/api/publications/${pubId}/comments/count`, { cache: 'no-store' });
+         const { count } = await r.json();
+         countEl.textContent = String(count);
+       } catch {
+         countEl.textContent = '?';
+       }
+     });
+   }
+   
+  //  getCurrentUser().then(() => {
+  //    renderPubsByYear();
+  //  });
+   getCurrentUser()
+   renderPubsByYear()
 
-        <hr>
+   window.addEventListener('storage', () => {
+     getCurrentUser()
+     renderPubsByYear()
+   });
+</script>
+               
     </body>
 </html>

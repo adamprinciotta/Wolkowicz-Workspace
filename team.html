@@ -1,154 +1,228 @@
-
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Research Team - Dr. Wolkowicz Lab</title>
-        <meta name="description" content="Meet the research team at Dr. Wolkowicz's lab">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="./styles.css">
-    </head>
-    <body>
-        <section class="nav">
-            <a href="home.html">Home</a> |
-            <a href="team.html">Team</a> |
-            <a href="courses.html">Courses</a> |
-            <a href="projects.html">Research</a> |
-            <a href="publications.html">Publications</a>
-        </section>
-        
-        <div class="team-intro">
-            <h1>Research Team</h1>
-            <h2>Current Lab Members</h2>
-        </div>
-        <section class="all-members">
-            <section class="team-section">
-                <div class="team-member-row">
-                    <div class="member-photo">
-                        <img src="" alt="Student 1 photo">
-                    </div>
-                    <div class="member-info">
-                        <div class="member-header">
-                            <h2>Student Name 1</h2>
-                            <p class="member-title"><em>Title</em></p>
-                        </div>
-                        <p class="member-bio">
-                            Description for student
-                        </p>
-                        <p class="research-keywords">
-                            <strong>Research Focus:</strong> [Keywords]
-                        </p>
-                    </div>
-                </div>
-                
-                <hr>
-            </section>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Research Team - Dr. Wolkowicz Lab</title>
+    <meta
+      name="description"
+      content="Meet the research team at Dr. Wolkowicz's lab"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
 
-
-            <section class="team-section">
-                <div class="team-member-row">
-                    <div class="member-photo">
-                        <img src="" alt="Student 2 photo">
-                    </div>
-                    <div class="member-info">
-                        <div class="member-header">
-                            <h2>Student Name 2</h2>
-                            <p class="member-title"><em>Title</em></p>
-                        </div>
-                        <p class="member-bio">
-                            Description for student
-                        </p>
-                        <p class="research-keywords">
-                            <strong>Research Focus:</strong> [Keywords]
-                        </p>
-                    </div>
-                </div>
-
-                <hr>
-            </section>
+  <body>
+    <div class="header-container">
+            <div class="nav-wrapper">
+                <a href="index.html" class="logo-link">
+                    <img src="images/U-CARE_logo.png" alt="U-CARE Group Logo" class="site-logo">
+                </a>
+                <section class="nav">
+                    <a href="index.html">Home</a> |
+                    <a href="team.html">Team</a> |
+                    <a href="courses.html">Courses</a> |
+                    <a href="projects.html">Research</a> |
+                    <a href="publications.html">Publications</a>
+                </section>
+            </div>
             
-            <section class="team-section">
-                <div class="team-member-row">
-                    <div class="member-photo">
-                        <img src="" alt="Student 3 photo">
+            <div class="auth-container">
+                <button id="signinBtn" class="google-signin-btn" onclick="signinWithGoogle()">
+                    Sign in with Google
+                </button>
+                <div id="userInfo" class="user-info hidden">
+                    <img id="userAvatar" class="user-avatar" alt="Profile">
+                    <div class="user-details">
+                        <span id="userName"></span>
+                        <span id="userEmail"></span>
                     </div>
-                    <div class="member-info">
-                        <div class="member-header">
-                            <h3>Student Name 3</h3>
-                            <p class="member-title"><em>Title</em></p>
-                        </div>
-                        <p class="member-bio">
-                            Description for student
-                        </p>
-                        <p class="research-keywords">
-                            <strong>Research Focus:</strong> [Keywords]
-                        </p>
-                    </div>
+                    <button id="logoutBtn" class="logout-btn" onclick="logout()">Logout</button>
                 </div>
+            </div>
+        </div>
+        
+        <script src="siteapi/auth.js"></script>
 
-                <hr>
-            </section>
+    <div class="team-intro">
+      <h1>Research Team</h1>
+      <h2>Current Lab Members</h2>
+    </div>
 
-            <section class="team-section">
-                <div class="team-member-row">
-                    <div class="member-photo">
-                        <img src="" alt="Student 4 photo">
-                    </div>
-                    <div class="member-info">
-                        <div class="member-header">
-                            <h3>Student Name 4</h3>
-                            <p class="member-title"><em>Title</em></p>
-                        </div>
-                        <p class="member-bio">
-                            Description for student
-                        </p>
-                        <p class="research-keywords">
-                            <strong>Research Focus:</strong> [Keywords]
-                        </p>
-                    </div>
+    <!-- React mounts here -->
+    <section class="all-members">
+      <div id="team-root"></div>
+    </section>
+
+    <!-- <section class="alumni-header">
+      <h2>Lab Alumni</h2>
+    </section> -->
+
+    <!-- React mounts here -->
+    <section class="alumni-section">
+      <div id="alumni-root"></div>
+    </section>
+
+    <hr />
+
+    <!-- React and Babel -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <!-- React Components -->
+    <script type="text/babel">
+      // Team Member component
+      function TeamMember({ name, title, bio, focus, photo }) {
+        return (
+          <section className="team-section">
+            <hr />
+            <div className="team-member-row">
+              <div className="member-photo">
+                <img src={photo} alt={`${name} photo`} />
+              </div>
+              <div className="member-info">
+                <div className="member-header">
+                  <h2>{name}</h2>
+                  <p className="member-title">
+                    <em>{title}</em>
+                  </p>
                 </div>
-                
-                <hr>
-            </section>
-        </section>
+                <p className="member-bio">{bio}</p>
+                <p className="research-keywords">
+                  <strong>Research Focus:</strong> {focus}
+                </p>
+              </div>
+            </div>
+          </section>
+        );
+      }
 
+      // Alumni Row component
+      // function AlumniRow({ name, degree, current }) {
+      //   return (
+      //     <tr>
+      //       <td>{name}</td>
+      //       <td>{degree}</td>
+      //       <td>{current}</td>
+      //     </tr>
+      //   );
+      // }
 
-        
-        <section class="alumni-header">
-            <h2>Lab Alumni</h2>
-        </section>
-        
-        <section class="alumni-section">
-            <table class="alumni-table">
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Former Position</th>
-                        <th>Current Position</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Alumni 1</td>
-                        <td>Degree [Year]</td>
-                        <td>Current Position</td>
-                    </tr>
-                    <tr>
-                        <td>Alumni 2</td>
-                        <td>Degree [Year]</td>
-                        <td>Current Position</td>
-                    </tr>
-                    <tr>
-                        <td>Alumni 3</td>
-                        <td>Degree [Year]</td>
-                        <td>Current Position</td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
+      // // Alumni Table component
+      // function AlumniTable({ alumni }) {
+      //   return (
+      //     <table className="alumni-table">
+      //       <thead>
+      //         <tr>
+      //           <th>Name</th>
+      //           <th>Former Position</th>
+      //           <th>Current Position</th>
+      //         </tr>
+      //       </thead>
+      //       <tbody>
+      //         {alumni.map((a, index) => (
+      //           <AlumniRow key={index} {...a} />
+      //         ))}
+      //       </tbody>
+      //     </table>
+      //   );
+      // }
 
-        <hr>
+      // Team data
+      const teamMembers = [
+        {
+          name: "Kelilah Wolkowicz",
+          title: "Assistant Professor, Mechanical and Industrial Engineering",
+          bio: "Kelilah studies problems in healthcare that could be solved by applying design, control theory, and robotics. Her research focuses on developing methods and mechanisms to further enhance or promote user independence, while addressing users’ needs to remain, as much as possible, integrated socially and productively as members of their communities. Kelilah is an engineering faculty advocate for the River Hawks Scholar Academy, an engineering faculty fellow for DifferenceMaker, and a faculty advisor for the Society of Women Engineers UML chapter.",
+          focus: "Design, Control Theory, Robotics",
+          photo: "images/home.webp",
+        },
+        {
+          name: "Masoumeh Farhadi Nia",
+          title: "PhD Candidate",
+          bio: "Masoumeh is a researcher in ECE at UMass Lowell, contributing to research at CARE, Collaborative Assistive and Rehabilitative Robotics Engineering, and CACT, Center for Advanced Computation and Telecommunications, labs. Her focus is on Signal Processing and AI, specializing in EEG-based Brain Computer Interface (BCI) for electric wheelchair navigation.",
+          focus: "Image and Video Processing, Signal Processing and AI, EEG-Based Brain Computer Interface",
+          photo: "images/MasoumehFarhadiNia.PNG",
+        },
+        {
+          name: "Elyas Irankhah",
+          title: "Alumni",
+          bio: "I earned my Ph.D. in Mechanical Engineering at UMass Lowell, with expertise spanning machine learning, deep learning, causal inference, data science, etc,. My technical skill set includes LLMs, physiological/biomedical/clinical and image signal processing, and full-stack AI development. I am an applied researcher and builder with hands-on experience creating predictive models, RAG systems, and inclusive AI-powered tools across healthcare, education, and technology. I have an entrepreneurial mindset, driven to build innovative, scalable AI solutions that address real-world challenges and create meaningful impact.",
+          focus: "Machine Learning Research Scientist | Causal Inference/LLMs & Healthcare AI",
+          photo: "images/ElyasIrankhah.PNG",
+        },
+      ];
 
-    </body>
+      // Section wrapper for team members
+      function TeamSection() {
+        return (
+          <>
+            {teamMembers.map((member, i) => (
+              <TeamMember key={i} {...member} />
+            ))}
+          </>
+        );
+      }
+
+      // Section wrapper for alumni
+      // function AlumniSection() {
+      //   return <AlumniTable alumni={alumni} />;
+      // }
+
+      // Mount React components
+      const teamRoot = ReactDOM.createRoot(document.getElementById("team-root"));
+      teamRoot.render(<TeamSection />);
+
+      // const alumniRoot = ReactDOM.createRoot(document.getElementById("alumni-root"));
+      // alumniRoot.render(<AlumniSection />);
+    </script>
+
+            <footer class="site-footer" role="contentinfo" aria-label="Site footer">
+  <div class="footer-inner">
+    <div class="footer-block address">
+      <h3>UMass Lowell</h3>
+      <address>
+        1 University Ave<br>
+        Lowell, MA 01854
+      </address>
+    </div>
+
+    <div class="footer-block contact">
+      <h3>Contact</h3>
+      <p>
+        <a class="email-link" href="mailto:kelilah_wolkowicz@uml.edu">kelilah_wolkowicz@uml.edu</a>
+      </p>
+    </div>
+
+    <div class="footer-block links">
+      <h3>Profiles</h3>
+      <ul class="inline-links" aria-label="External profiles">
+        <li>
+          <a href="https://scholar.google.com/citations?user=DQwmmCIAAAAJ&hl=en" target="_blank" rel="noopener noreferrer">
+            <!-- mortarboard / scholar icon -->
+            <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" focusable="false">
+              <path fill="currentColor" d="M12 2L1 7l11 5 9-4.09V17h2V7z"></path>
+              <path fill="currentColor" d="M11 12.98L3 9v6l8 3 8-3v-6l-8 3z"></path>
+            </svg>
+            Google Scholar
+          </a>
+        </li>
+        <li>
+          <a href="https://www.linkedin.com/in/kelilahwolkowicz/" target="_blank" rel="noopener noreferrer">
+            <!-- simple LinkedIn icon -->
+            <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" focusable="false">
+              <path fill="currentColor" d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM.5 8h4v14h-4V8zm7 0h3.8v1.9h.1c.5-.9 1.8-1.8 3.7-1.8 4 0 4.8 2.6 4.8 6V22h-4v-6.5c0-1.6 0-3.6-2.2-3.6-2.2 0-2.5 1.7-2.5 3.5V22h-4V8z"/>
+            </svg>
+            LinkedIn
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <small>&copy;</span>UMass Lowell</small>
+  </div>
+  </body>
 </html>
