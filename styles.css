@@ -699,11 +699,6 @@ address {
   border-top: 1px solid #e0e0e0;
 }
 
-img {
-  max-width: 100%;
-  height: auto;
-}
-
 @media (max-width: 1350px){
   .header-container{
     flex-direction: column;
